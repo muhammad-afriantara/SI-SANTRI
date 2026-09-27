@@ -24,7 +24,7 @@ Aplikasi ini menghubungkan tiga pihak secara *real-time*:
 - **Guru Wali**: Memantau kedisiplinan dan rekap kepatuhan siswa binaan satu kelas.
 - **Wali Murid**: Memantau perkembangan ibadah dan aktivitas harian anaknya dari rumah.
 
-Infrastruktur aplikasi telah didukung oleh server cloud **FastAPI** dan database **MongoDB Atlas** yang aktif 24 jam nonstop.
+Aplikasi ini beroperasi secara *online* dan tersinkronisasi otomatis selama 24 jam, sehingga data yang diisi oleh siswa dapat langsung dipantau oleh guru dan orang tua secara *real-time*.
 
 ---
 
@@ -245,7 +245,7 @@ Orang tua mendapatkan akses khusus yang terisolasi aman (**hanya dapat memantau 
 ## 7. Tanya Jawab (FAQ) & Penyelesaian Masalah
 
 ### Q1: Apakah aplikasi ini membutuhkan koneksi internet?
-**Jawab**: Ya. Data tersimpan di server cloud dan database MongoDB Atlas, sehingga HP membutuhkan koneksi internet (kuota data seluler atau Wi-Fi).
+**Jawab**: Ya. Data disinkronkan langsung secara online ke sistem sekolah, sehingga HP membutuhkan koneksi internet (kuota data seluler atau Wi-Fi).
 
 ---
 
