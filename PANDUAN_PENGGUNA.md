@@ -1,4 +1,4 @@
-# 📖 PANDUAN LENGKAP PENGGUNAAN APLIKASI SI-SANTRI
+# 📖 PANDUAN PENGGUNAAN APLIKASI SI-SANTRI
 **Sistem Pengawasan Tingkah Laku Sehari-hari Santri / Siswa**  
 **SMP NEGERI 2 PANJI**
 
@@ -67,9 +67,8 @@ Halaman login SI-SANTRI dilengkapi dengan **Pemilih Peran (Role Selector)** di b
 └────────────────────────────────────────────────────────┘
 ```
 
-### Informasi Akun & Password:
-- **Password Default (Awal)**: `password123`
-- Untuk keamanan, setiap pengguna disarankan segera mengubah kata sandi setelah berhasil login pertama kali.
+### Informasi Akun & Kata Sandi:
+- **Kata Sandi Default**: `password123` (berlaku untuk semua pengguna awal).
 
 ---
 
@@ -78,174 +77,195 @@ Halaman login SI-SANTRI dilengkapi dengan **Pemilih Peran (Role Selector)** di b
 ### A. Cara Login Siswa
 1. Pilih tab **"Siswa"**.
 2. Masukkan **NIPD (Nomor Induk Peserta Didik)** Anda (contoh: `8459`).
-3. Masukkan password (default: `password123`).
+3. Masukkan kata sandi (default: `password123`).
 4. Klik **Masuk**.
 
 ---
 
 ### B. Dashboard Siswa
-Setelah login, Anda akan melihat:
-- **Sapaan & Profil Siswa**: Nama lengkap, kelas, dan NIPD Anda.
-- **Status Jurnal Hari Ini**: Menampilkan indikator apakah Anda sudah mengisi kegiatan hari ini atau belum.
-- **Kartu Ringkasan Kepatuhan (7 Hari & 30 Hari)**: Menampilkan persentase kepatuhan sholat fardhu berjamaah dan tadarus Al-Qur'an.
-- **Tombol "Isi Jurnal Hari Ini"**: Tombol utama untuk memulai pengisian aktivitas.
+Setelah login, santri akan melihat:
+- **Kartu Profil**: Nama lengkap, kelas, dan NIPD santri.
+- **Status Jurnal Hari Ini**:
+  - Tanda **"Sudah Mengisi"** (jika sudah tuntas hari ini).
+  - Tanda **"Belum Mengisi"** (jika belum mengisi hari ini).
+- **Banner Peringatan Hari Terlewat**: Menampilkan jumlah hari yang terlewat (jika ada) dan tombol untuk melengkapinya.
+- **Kartu Ringkasan Kepatuhan Sholat Berjamaah**: Menampilkan persentase sholat berjamaah dalam **7 Hari** dan **30 Hari** terakhir.
+- **Tombol Aksi Utama**:
+  - Tombol **"Isi Kegiatan Hari Ini"** (atau *"Ubah Kegiatan Hari Ini"* jika ingin mengedit).
 
 ---
 
-### C. Mengisi Jurnal Harian (5 Modul Pembiasaan)
-Pengisian jurnal harian dibagi menjadi 5 modul sederhana yang dipandu dengan *progress bar*:
+### C. Mengisi Jurnal Harian (5 Tahapan Form)
+Pengisian formulir dipandu dengan *progress bar* yang terbagi menjadi 5 bagian:
 
-#### 1. Modul Sholat Fardhu & Sunnah 🕌
-- **Sholat 5 Waktu** (Subuh, Dzuhur, Ashar, Maghrib, Isya):
-  Pilih salah satu status untuk setiap waktu sholat:
-  - **Berjamaah** (di masjid/musholla/bersama keluarga).
-  - **Munfarid** (sholat sendirian tepat waktu).
-  - **Tidak Sholat / Uzur** (bagi santriwati yang sedang berhalangan/haid).
-- **Sholat Sunnah**:
-  - Centang jika Anda melaksanakan **Sholat Dhuha** atau **Sholat Tahajjud**.
+#### 1. Tahap A: Sholat Fardhu 5 Waktu 🕌
+Untuk setiap waktu sholat (**Subuh**, **Dzuhur**, **Ashar**, **Maghrib**, **Isya**), santri memilih salah satu dari 4 pilihan tombol:
+- **Berjamaah**: Melaksanakan sholat secara berjamaah di masjid/musholla/rumah.
+- **Munfarid**: Melaksanakan sholat sendirian tepat waktu.
+- **Berhalangan**: Khusus santriwati yang berhalangan/uzur syar'i (haid).
+- **Tidak Sholat**: Jika meninggalkan sholat.
 
-#### 2. Modul Pola Istirahat (Tidur & Bangun) ⏰
-- **Jam Tidur Malam**: Catat jam berapa Anda mulai tidur (contoh: 21.30 WIB).
-- **Jam Bangun Pagi**: Catat jam berapa Anda bangun untuk bersiap sholat Subuh (contoh: 04.15 WIB).
-- *Tujuan*: Membiasakan pola hidup teratur dan tidak begadang.
+#### 2. Tahap B: Waktu Tidur & Bangun ⏰
+Santri memilih rentang jam istirahat yang tersedia:
+- **Waktu Tidur Malam**:
+  - `19.00 – 20.00`
+  - `20.00 – 21.00`
+  - `21.00 – 22.00`
+  - `22.00 – tengah malam`
+- **Waktu Bangun Pagi**:
+  - `03.00 – 04.00`
+  - `04.00 – 05.00`
+  - `05.00 – 06.00`
+  - `06.00 – siang`
 
-#### 3. Modul Pola Nutrisi & Puasa 🍽️
-- Catat pola makan harian: **Sarapan Pagi**, **Makan Siang**, dan **Makan Malam**.
-- Centang jika menjalankan **Puasa Sunnah** (Senin-Kamis / Daud).
-- Konsumsi air putih yang cukup.
+#### 3. Tahap C: Makan Bergizi (Nutrisi) 🍽️
+Santri mencentang zat gizi yang dikonsumsi hari ini (bisa memilih lebih dari satu):
+- ☑️ **Karbohidrat** (Nasi, roti, kentang, jagung, dll).
+- ☑️ **Protein** (Ikan, ayam, telur, tempe, tahu, daging, dll).
+- ☑️ **Vitamin** (Sayur-mayur dan buah-buahan).
 
-#### 4. Modul Berbakti kepada Orang Tua 👨‍👩‍👧‍👦
-- Catat kegiatan membantu orang tua di rumah, misalnya:
-  - Membersihkan kamar tidur / menyapu rumah.
-  - Membantu memasak / mencuci piring.
-  - Berpamitan dan mencium tangan orang tua saat keluar rumah.
+#### 4. Tahap D: Kegiatan Bersama Orang Tua 👨‍👩‍👧‍👦
+Santri memilih kegiatan berbakti / membantu orang tua di rumah (bisa memilih lebih dari satu):
+- ☑️ Membersihkan kamar/ruang tamu/dapur
+- ☑️ Membersihkan halaman dan ruangan lain
+- ☑️ Mencuci piring / mencuci baju / mencuci kendaraan dan lain-lain
+- ☑️ Memasak / belanja / menyiapkan makanan dan lain-lain
+- ☑️ Menjaga adik / keluarga dan lain-lain
+- ☑️ Berkebun / merawat hewan peliharaan dan lain-lain
+- ☑️ Membantu orang tua bekerja dan lain-lain
+- ☑️ **Lainnya** *(jika dicentang, akan muncul kolom teks untuk mengetik kegiatan sendiri)*.
 
-#### 5. Modul Belajar & Mengaji 📖
-- **Tadarus Al-Qur'an / Juz 'Amma**:
-  - Catat nama surat dan ayat yang dibaca hari ini (contoh: *Surat Al-Baqarah ayat 1-20*).
-- **Belajar Mandiri / Mengerjakan Tugas Sekolah**:
-  - Catat durasi dan mata pelajaran yang dipelajari malam ini.
+#### 5. Tahap E: Aktivitas Belajar 📖
+Santri memilih aktivitas belajar yang dilakukan hari ini (bisa memilih lebih dari satu):
+- ☑️ Mengerjakan tugas/PR
+- ☑️ Membaca materi pelajaran
+- ☑️ Menyimak materi pelajaran (video pembelajaran)
+- ☑️ Menulis/mencatat materi
+- ☑️ Ekstrakurikuler sekolah
+- ☑️ **Kegiatan non akademik lainnya** *(jika dicentang, akan muncul kolom teks untuk mengetik kegiatan sendiri)*.
 
 ---
 
-### D. Fitur Pengisian Hari yang Terlewat (*Backfill*)
-Jika kemarin Anda lupa mengisi jurnal harian:
-1. Di halaman jurnal, pilih tanggal kegiatan yang ingin diisi (tersedia pemilih tanggal mundur).
-2. Isi data seperti biasa dan kirim.
-3. Sistem akan menandai laporan tersebut dengan label *"Diisi Terlambat (Backfill)"* agar transparansi tetap terjaga bagi guru dan orang tua.
+### D. Fitur "Lengkapi Hari Terlewat" (Backfill)
+Jika santri lupa mengisi jurnal pada hari-hari sebelumnya:
+1. Di dashboard siswa, ketuk banner / tombol **"Lengkapi Hari Terlewat"**.
+2. Aplikasi akan membuka layar khusus yang menampilkan **daftar tanggal-tanggal yang terlewat**.
+3. Ketuk tanggal yang ingin dilengkapi, isi formulir 5 tahap, lalu simpan.
+4. Laporan akan tersimpan dengan tanda *"Diisi Terlambat (Backfill)"*.
 
 ---
 
-### E. Memperbarui Data (*Edit / Upsert*)
-Jika ada data yang salah input di hari yang sama:
-- Anda cukup mengisi ulang formulir tanggal tersebut dan menyimpannya kembali. Sistem otomatis memperbarui data lama tanpa membuat data ganda (*anti-duplicate*).
+### E. Memperbarui Data (Edit Data)
+Jika ada kekeliruan data yang sudah disimpan pada hari yang sama:
+- Cukup buka kembali formulir hari tersebut (tombol *"Ubah Kegiatan Hari Ini"*), perbaiki pilihan, lalu kirim ulang. Sistem otomatis memperbarui data lama tanpa membuat data ganda (*anti-duplicate*).
 
 ---
 
 ## 5. Panduan Pengguna: GURU WALI (Wali Kelas)
 
-Guru Wali berperan sebagai pembimbing utama yang memantau perkembangan seluruh santri di kelas binaannya.
-
 ### A. Cara Login Guru Wali
 1. Pilih tab **"Guru Wali"**.
 2. Masukkan **Nama Lengkap Guru** (bisa mengetik nama biasa atau format `nama_lengkap`, contoh: `catur_anjar_anggraini`).
-3. Masukkan password (default: `password123`).
+3. Masukkan kata sandi (default: `password123`).
 4. Klik **Masuk**.
 
 ---
 
 ### B. Dashboard Monitoring Kelas
-Dashboard Guru Wali menyajikan ringkasan instan kondisi kelas hari ini:
-- **Kartu KPI Hari Ini**:
-  - Total jumlah siswa binaan di kelas.
-  - Berapa siswa yang **Sudah Mengisi** jurnal hari ini.
-  - Berapa siswa yang **Belum Mengisi** jurnal hari ini.
-  - Rata-rata persentase sholat berjamaah kelas.
+Dashboard Guru Wali menyajikan rekap monitoring seluruh siswa binaan:
+- **Header**: Nama Guru Wali dan tombol **"+ Siswa"** (untuk menambah santri baru).
+- **Kartu KPI Kelas**:
+  - Total jumlah siswa binaan.
+  - Jumlah siswa yang **Sudah Mengisi** jurnal hari ini.
+  - Jumlah siswa yang **Belum Mengisi** jurnal hari ini.
+  - Rata-rata persentase kepatuhan sholat berjamaah kelas.
 - **Filter Cepat**:
-  - Tombol filter: **Semua**, **Sudah Isi**, dan **Belum Isi** untuk memudahkan identifikasi santri yang lalai.
+  - Tombol filter status: **Semua**, **Sudah**, dan **Belum**.
 - **Pencarian Siswa**:
-  - Kotak pencarian untuk mencari nama atau NIPD siswa tertentu secara cepat.
+  - Kolom pencarian untuk mencari nama atau NIPD santri secara langsung.
 
 ---
 
-### C. Melihat Detail & Riwayat Siswa
-Klik pada nama salah satu siswa untuk membuka halaman rekap individual:
-1. **Profil Siswa**: NIPD, nama lengkap, kontak wali murid.
-2. **Grafik Kepatuhan 7 Hari & 30 Hari Terakhir**:
-   - Tren sholat 5 waktu berjamaah.
-   - Kedisiplinan bangun shubuh dan mengaji.
-3. **Log Harian Siswa**:
-   - Membaca catatan detail apa saja yang dilakukan siswa pada tanggal tertentu (sholat apa saja, surat Al-Qur'an apa yang dibaca, dsb).
+### C. Melihat Rekap & Log Individual Siswa
+Ketuk kartu nama santri pada daftar untuk membuka rincian lengkap:
+1. **Profil Siswa**: Nama lengkap, NIPD, dan kelas.
+2. **Kartu Rekapitulasi Kepatuhan**:
+   - Persentase sholat berjamaah selama **7 Hari** terakhir.
+   - Persentase sholat berjamaah selama **30 Hari** terakhir.
+3. **Rincian Jurnal Tanggal Terpilih**:
+   - Status waktu pengisian (dan label *"Terlambat mengisi"* jika backfill).
+   - Rincian status sholat Subuh, Dzuhur, Ashar, Maghrib, Isya.
+   - Jam tidur malam dan jam bangun pagi.
+   - Pilihan nutrisi yang dikonsumsi.
+   - Kegiatan bersama orang tua (beserta catatan khusus jika ada).
+   - Aktivitas belajar (beserta catatan khusus jika ada).
 
 ---
 
 ### D. Menambahkan Siswa Baru
-Guru Wali dapat menambahkan siswa baru ke kelas binaannya secara mandiri:
-1. Klik tombol **"+ Tambah Siswa Baru"** di dashboard.
-2. Masukkan data siswa:
-   - **NIPD**: Nomor Induk Siswa (harus unik).
-   - **Nama Lengkap Siswa**.
-   - **Nama Lengkap Wali Murid**.
-   - **Nomor Kontak / WhatsApp** (opsional).
+Guru Wali dapat mendaftarkan siswa baru ke kelas binaannya:
+1. Klik tombol **"+ Siswa"** di pojok kanan atas dashboard.
+2. Isi formulir pendaftaran:
+   - **Nama Lengkap**: Nama lengkap siswa baru (contoh: *Budi Setiawan*).
+   - **NIPD**: Nomor Induk Siswa (wajib unik).
+   - **Kelas**: Pilih chip kelas yang sesuai (`7A`, `7B`, `7C`, `7D`, `8A`, `8B`, `8C`, `8D`, `8E`).
 3. Klik **Simpan**.
 4. **Sistem Otomatis**:
-   - Akun siswa baru langsung dibuat (Login pakai NIPD).
-   - Akun wali murid langsung otomatis dibuatkan (Login pakai nama anak).
-   - Password awal kedua akun otomatis diset ke `password123`.
+   - Akun Siswa langsung aktif (Login: NIPD).
+   - Akun Wali Murid otomatis dibuatkan (Login: Nama Lengkap Siswa).
+   - Password kedua akun otomatis diset ke `password123`.
 
 ---
 
 ## 6. Panduan Pengguna: WALI MURID (Orang Tua)
 
-Aplikasi SI-SANTRI memberikan akses transparansi penuh bagi orang tua untuk memantau kejujuran dan kebiasaan ibadah anak di luar pantauan langsung.
-
 ### A. Cara Login Wali Murid
 1. Pilih tab **"Wali Murid"**.
 2. Masukkan **Nama Lengkap Anak Anda** (bisa mengetik biasa atau format `nama_lengkap`, contoh: `afika_putri_rievylia`).
-3. Masukkan password (default: `password123`).
+3. Masukkan kata sandi (default: `password123`).
 4. Klik **Masuk**.
 
 ---
 
 ### B. Dashboard Orang Tua
-Untuk menjaga privasi, **orang tua hanya dapat melihat data anaknya sendiri** (terisolasi secara ketat):
-- **Status Hari Ini**: Melihat apakah anak Anda sudah mengisi jurnal harian hari ini.
-- **Rincian Ibadah Hari Ini**:
-  - Apakah anak sholat Subuh, Dzuhur, Ashar, Maghrib, dan Isya berjamaah atau tidak.
-  - Surat Al-Qur'an apa yang dibaca anak hari ini.
-  - Apakah anak mencatat jam tidur dan bangun secara teratur.
-- **Ringkasan Kepatuhan 7 & 30 Hari**:
-  - Persentase kepatuhan ibadah anak dalam 1 minggu dan 1 bulan terakhir.
-  - Membantu orang tua saat evaluasi bersama guru wali kelas.
+Orang tua mendapatkan akses khusus yang terisolasi aman (**hanya dapat memantau data anaknya sendiri**):
+- **Kartu Identitas Anak**: Menampilkan nama anak, kelas, NIPD, serta nama Guru Wali kelasnya.
+- **Status Pengisian Hari Ini**:
+  - Kotak hijau: *"Sudah mengisi kegiatan hari ini"* (disertai jam pengisian).
+  - Kotak kuning: *"Belum mengisi kegiatan hari ini"*.
+- **Rincian Sholat & Istirahat Hari Ini**:
+  - Status setiap waktu sholat (Subuh, Dzuhur, Ashar, Maghrib, Isya).
+  - Jam tidur malam dan bangun pagi anak.
+- **Grafik Kepatuhan Sholat Berjamaah**:
+  - Persentase sholat berjamaah anak selama **7 Hari** terakhir.
+  - Persentase sholat berjamaah anak selama **30 Hari** terakhir.
 
 ---
 
 ## 7. Tanya Jawab (FAQ) & Penyelesaian Masalah
 
 ### Q1: Apakah aplikasi ini membutuhkan koneksi internet?
-**Jawab**: Ya. Karena data disinkronkan secara langsung ke server cloud dan database sekolah, HP Anda memerlukan koneksi internet (bisa menggunakan kuota data seluler maupun Wi-Fi).
+**Jawab**: Ya. Data tersimpan di server cloud dan database MongoDB Atlas, sehingga HP membutuhkan koneksi internet (kuota data seluler atau Wi-Fi).
 
 ---
 
-### Q2: Bagaimana jika lupa kata sandi (*Password*)?
-**Jawab**:
-- Untuk **Siswa** dan **Wali Murid**: Silakan menghubungi **Guru Wali Kelas** masing-masing untuk mereset kata sandi ke setelan default (`password123`).
-- Untuk **Guru Wali**: Silakan menghubungi Administrator Sistem IT Sekolah.
+### Q2: Mengapa muncul peringatan "Play Protect" saat install APK?
+**Jawab**: Peringatan ini normal karena aplikasi di-compile langsung untuk internal SMP Negeri 2 Panji dan tidak didistribusikan lewat Google Play Store publik. Cukup klik **"Detail selengkapnya"** ➡️ **"Tetap instal (Install anyway)"**.
 
 ---
 
-### Q3: Apakah santriwati yang sedang haid/uzur tetap harus mengisi jurnal?
-**Jawab**: Ya, tetap harus mengisi. Pada modul sholat, pilih opsi **"Tidak Sholat / Uzur"**. Dengan begitu, status jurnal hari ini tetap tercatat sudah mengisi dan tidak menurunkan nilai kepatuhan karena faktor syar'i.
+### Q3: Bagaimana jika santriwati sedang berhalangan / haid?
+**Jawab**: Pada Tahap A (Sholat), pilih opsi **"Berhalangan"**. Sistem mencatat jurnal tetap terisi tanpa mengurangi nilai kepatuhan karena faktor uzur syar'i.
 
 ---
 
-### Q4: Apakah data yang sudah terisi kemarin bisa diubah jika ada kekeliruan?
-**Jawab**: Bisa. Buka formulir pada tanggal yang ingin diperbaiki, lakukan perubahan, lalu simpan kembali. Data di server akan langsung terupdate dengan data terbaru.
+### Q4: Apakah data yang sudah terisi bisa diperbaiki jika salah pilih?
+**Jawab**: Bisa. Buka kembali form pada hari tersebut, ubah pilihan yang keliru, lalu simpan ulang. Sistem otomatis memperbarui data yang ada.
 
 ---
 
-### Q5: Saat pertama kali install APK di HP, muncul peringatan "Play Protect". Apakah aplikasi ini berbahaya?
-**Jawab**: **Sama sekali tidak berbahaya.** Peringatan tersebut muncul murni karena aplikasi di-compile langsung untuk keperluan internal SMP Negeri 2 Panji dan belum dipublikasikan secara komersial di Google Play Store publik. Cukup pilih **"Tetap Instal (Install anyway)"**.
+### Q5: Bagaimana jika lupa kata sandi (*Password*)?
+**Jawab**: Kata sandi awal seluruh akun adalah **`password123`**. Jika santri atau wali murid mengalami kendala masuk, silakan menghubungi **Guru Wali Kelas** masing-masing.
 
 ---
 
