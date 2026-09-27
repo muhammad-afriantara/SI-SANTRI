@@ -1,0 +1,320 @@
+{
+  "project_name": "SI SANTRI - SMP NEGERI 2 PANJI",
+  "tagline": "Sistem Pengawasan Tingkah Laku Sehari-hari Siswa",
+  "school_identity": {
+    "name": "SMP NEGERI 2 PANJI",
+    "district": "Kabupaten Situbondo, Jawa Timur",
+    "npsn": "20522690",
+    "motto": "Beriman, Berilmu, Berakhlak Mulia",
+    "app_title": "SI SANTRI"
+  },
+  "app_archetype": "ARCHETYPE 1: ORGANIC & EARTHY / ISLAMIC MODERN (Deep Emerald & Sage)",
+  "theme_strategy": {
+    "primary_mode": "light",
+    "mode_rationale": "Sistem administrasi dan karakter sekolah Indonesia untuk siswa SMP (12-15 tahun), guru, dan orang tua. Membutuhkan keterbacaan prima di bawah sinar matahari pada perangkat mobile Android entry-level, kesan bersih, teratur, dan religius.",
+    "dark_mode_supported": true
+  },
+  "color_palette": {
+    "light": {
+      "surface": "#F8FAFC",
+      "surface_elevated": "#FFFFFF",
+      "surface_secondary": "#F1F5F9",
+      "surface_tertiary": "#E2E8F0",
+      "surface_inverse": "#064E3B",
+      "on_surface": "#0F172A",
+      "on_surface_secondary": "#334155",
+      "on_surface_tertiary": "#64748B",
+      "on_surface_inverse": "#FFFFFF",
+      "brand": "#065F46",
+      "brand_primary": "#047857",
+      "brand_secondary": "#10B981",
+      "brand_tertiary": "#D1FAE5",
+      "brand_accent": "#0D9488",
+      "on_brand_primary": "#FFFFFF",
+      "on_brand_secondary": "#064E3B",
+      "on_brand_tertiary": "#065F46",
+      "prayer_gold": "#D97706",
+      "prayer_gold_light": "#FEF3C7",
+      "border": "#E2E8F0",
+      "border_strong": "#CBD5E1",
+      "border_brand": "#A7F3D0",
+      "success": "#059669",
+      "warning": "#D97706",
+      "error": "#DC2626",
+      "info": "#0284C7"
+    },
+    "dark": {
+      "surface": "#06231C",
+      "surface_elevated": "#0A352B",
+      "surface_secondary": "#0E4337",
+      "surface_tertiary": "#145345",
+      "surface_inverse": "#ECFDF5",
+      "on_surface": "#F1F5F9",
+      "on_surface_secondary": "#CBD5E1",
+      "on_surface_tertiary": "#94A3B8",
+      "on_surface_inverse": "#064E3B",
+      "brand": "#10B981",
+      "brand_primary": "#059669",
+      "brand_secondary": "#34D399",
+      "brand_tertiary": "#064E3B",
+      "brand_accent": "#14B8A6",
+      "on_brand_primary": "#FFFFFF",
+      "on_brand_secondary": "#022C22",
+      "on_brand_tertiary": "#A7F3D0",
+      "prayer_gold": "#F59E0B",
+      "prayer_gold_light": "#451A03",
+      "border": "#145345",
+      "border_strong": "#1B6B59",
+      "border_brand": "#047857",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#38BDF8"
+    }
+  },
+  "typography": {
+    "system": "System San Francisco / Roboto / Inter compatible fonts",
+    "scale": {
+      "display": { "fontSize": 26, "fontWeight": "800", "lineHeight": 32, "letterSpacing": -0.5 },
+      "h1": { "fontSize": 22, "fontWeight": "700", "lineHeight": 28, "letterSpacing": -0.3 },
+      "h2": { "fontSize": 18, "fontWeight": "700", "lineHeight": 24, "letterSpacing": -0.2 },
+      "h3": { "fontSize": 16, "fontWeight": "600", "lineHeight": 22 },
+      "h4": { "fontSize": 15, "fontWeight": "600", "lineHeight": 20 },
+      "body": { "fontSize": 14, "fontWeight": "400", "lineHeight": 20 },
+      "body_medium": { "fontSize": 14, "fontWeight": "500", "lineHeight": 20 },
+      "caption": { "fontSize": 12, "fontWeight": "500", "lineHeight": 16 },
+      "tiny": { "fontSize": 10, "fontWeight": "700", "lineHeight": 14, "letterSpacing": 0.5, "textTransform": "uppercase" }
+    }
+  },
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "base": 16,
+    "lg": 20,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 40
+  },
+  "radii": {
+    "chip": 9999,
+    "button": 12,
+    "card": 16,
+    "banner": 20,
+    "badge": 8
+  },
+  "touch_targets": {
+    "min_height": 48,
+    "chip_height": 42,
+    "input_height": 50,
+    "tab_bar_height": 64
+  },
+  "image_urls": {
+    "school_hero": "https://images.unsplash.com/photo-1613896527026-f195d5c818ed?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBidWlsZGluZyUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3OTA0NjgyNzZ8MA&ixlib=rb-4.1.0&q=85",
+    "students_activity": "https://images.unsplash.com/photo-1665665160518-097a89d5383e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxpbmRvbmVzaWFuJTIwc3R1ZGVudCUyMHNjaG9vbHxlbnwwfHx8fDE3OTA0NjgyNzF8MA&ixlib=rb-4.1.0&q=85",
+    "students_portrait": "https://images.unsplash.com/photo-1615466178532-b6d2f9c304de?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw0fHxpbmRvbmVzaWFuJTIwc3R1ZGVudCUyMHNjaG9vbHxlbnwwfHx8fDE3OTA0NjgyNzF8MA&ixlib=rb-4.1.0&q=85"
+  },
+  "roles_and_authentication": {
+    "roles": [
+      {
+        "id": "siswa",
+        "label": "Siswa",
+        "description": "Murid SMP Negeri 2 Panji",
+        "credential_field": "nipd",
+        "credential_label": "NIPD (Nomor Induk Peserta Didik)",
+        "placeholder": "Contoh: 20240101",
+        "demo_accounts": [
+          { "label": "Ahmad Fauzan (7A)", "nipd": "20240701", "name": "Ahmad Fauzan" },
+          { "label": "Nurul Aini (8B)", "nipd": "20230815", "name": "Nurul Aini" }
+        ]
+      },
+      {
+        "id": "guru",
+        "label": "Guru Wali",
+        "description": "Wali Kelas & Pembina SI SANTRI",
+        "credential_field": "nama_lengkap",
+        "credential_label": "Nama Lengkap Guru",
+        "placeholder": "Contoh: Budi Santoso, S.Pd.",
+        "demo_accounts": [
+          { "label": "Pak Budi (Wali 7A)", "nama_lengkap": "Budi Santoso, S.Pd.", "nip": "197805122005011002" },
+          { "label": "Bu Siti (Wali 8B)", "nama_lengkap": "Siti Rahmawati, S.Pd.", "nip": "198203202008012004" }
+        ]
+      },
+      {
+        "id": "wali_murid",
+        "label": "Wali Murid",
+        "description": "Orang Tua / Wali Siswa",
+        "credential_field": "nama_siswa",
+        "credential_label": "Nama Lengkap Siswa Terkait",
+        "placeholder": "Ketik nama lengkap anak Anda...",
+        "demo_accounts": [
+          { "label": "Ortu Ahmad Fauzan", "nama_siswa": "Ahmad Fauzan", "relation": "Ayah Kandung" },
+          { "label": "Ortu Nurul Aini", "nama_siswa": "Nurul Aini", "relation": "Ibu Kandung" }
+        ]
+      }
+    ]
+  },
+  "form_wizard_specification": {
+    "title": "Form Pantauan Harian (5 Langkah)",
+    "description": "Form terpandu yang ringan dan cepat diisi setiap hari",
+    "steps": [
+      {
+        "step": 1,
+        "key": "sholat",
+        "title": "A. Sholat Fardhu 5 Waktu",
+        "icon": "mosque",
+        "prayers": ["Subuh", "Dzuhur", "Ashar", "Maghrib", "Isya"],
+        "options": [
+          { "value": "Berjamaah", "badge_color": "emerald", "points": 10 },
+          { "value": "Munfarid", "badge_color": "blue", "points": 8 },
+          { "value": "Berhalangan", "badge_color": "amber", "points": 7 },
+          { "value": "Tidak Sholat", "badge_color": "rose", "points": 0 }
+        ]
+      },
+      {
+        "step": 2,
+        "key": "tidur",
+        "title": "B. Waktu Tidur & Bangun",
+        "icon": "moon-stars",
+        "fields": [
+          { "name": "waktu_tidur", "label": "Jam Tidur Malam", "default": "21:30", "quick_choices": ["20:30", "21:00", "21:30", "22:00", "22:30", "23:00+"] },
+          { "name": "waktu_bangun", "label": "Jam Bangun Pagi", "default": "04:15", "quick_choices": ["03:30", "04:00", "04:15", "04:30", "05:00", "05:30+"] }
+        ]
+      },
+      {
+        "step": 3,
+        "key": "nutrisi",
+        "title": "C. Asupan Nutrisi Harian",
+        "icon": "apple-alt",
+        "type": "multi_select",
+        "categories": [
+          { "id": "karbohidrat", "label": "Karbohidrat", "examples": "Nasi, Singkong, Roti, Kentang" },
+          { "id": "vitamin", "label": "Vitamin & Mineral", "examples": "Sayur Bayam, Buah Pisang/Jeruk" },
+          { "id": "protein", "label": "Protein (Lauk)", "examples": "Tempe, Tahu, Telur, Ikan, Ayam" }
+        ]
+      },
+      {
+        "step": 4,
+        "key": "kegiatan_ortu",
+        "title": "D. Kegiatan Bersama Orang Tua",
+        "icon": "hands-helping",
+        "type": "multi_select_with_other",
+        "options": [
+          "Makan Bersama",
+          "Membantu Pekerjaan Rumah (Menyapu/Mencuci)",
+          "Mengobrol/Curhat Santai",
+          "Belajar/Ditemani Belajar",
+          "Sholat Berjamaah di Rumah",
+          "Lainnya"
+        ],
+        "other_text_field": "kegiatan_ortu_lainnya"
+      },
+      {
+        "step": 5,
+        "key": "belajar",
+        "title": "E. Aktivitas Belajar Mandiri",
+        "icon": "book-open",
+        "type": "multi_select_with_other",
+        "options": [
+          "Mengerjakan PR / Tugas Sekolah",
+          "Membaca Buku Pelajaran / Mengulang Materi",
+          "Membaca Al-Qur'an / Tadarus",
+          "Belajar Kursus / Bimbingan Belajar",
+          "Membaca Buku Non-Pelajaran / Literasi",
+          "Lainnya"
+        ],
+        "other_text_field": "belajar_lainnya"
+      }
+    ]
+  },
+  "screen_layouts": {
+    "login": {
+      "header": "Logo SMPN 2 Panji + Title 'SI SANTRI' + Subtitle Situbondo",
+      "role_switcher": "Segmented tab pill [Siswa | Guru Wali | Wali Murid]",
+      "credential_input": "Dynamic input based on role + Clear label & helper text",
+      "action_button": "Pill button 'Masuk ke Sistem' (Emerald 600)",
+      "demo_chips": "Horizontal scrolling quick fill chips with actual test data"
+    },
+    "student_home": {
+      "greeting_banner": "Card with Emerald-Teal gradient, student name, class, and today's completion badge",
+      "daily_status_card": "Status chip (Sudah Mengisi / Belum Mengisi) + summary metric of prayers filled",
+      "backfill_card": "Alert card with amber indicator if previous days were missed, with 'Isi Tanggal Terlewat' button",
+      "bottom_tabs": ["Beranda", "Isi Form", "Riwayat", "Akun"]
+    },
+    "teacher_dashboard": {
+      "kpi_grid": "4 compact stat cards: Total Siswa (398), Sudah Mengisi, Belum Mengisi, Persentase Kepatuhan (%)",
+      "filter_bar": "Date picker selector + Status filter pill (Semua | Sudah | Belum) + Search student input",
+      "student_list": "Lightweight virtualized list with avatar initials, student name, NIPD, class, and completion pill",
+      "quick_actions": "'Tambah Siswa' floating or header action button"
+    },
+    "teacher_student_detail": {
+      "student_header": "Profile card with NIPD, class, parent name, telephone",
+      "weekly_compliance": "7-day mini progress bar and streak count",
+      "daily_breakdown": "Expandable date cards showing Sholat 5 waktu, sleeping hours, nutrition intake, and notes"
+    },
+    "parent_dashboard": {
+      "linked_child_banner": "Card displaying exactly 1 linked child with photo/avatar and class",
+      "today_card": "Live status of today's input with timestamp or pending alert",
+      "summary_tabs": "7 Hari vs 30 Hari visual summary bars for Sholat, Tidur Cukup, and Nutrisi Seimbang",
+      "history_feed": "Chronological activity feed with date badges"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Follow this file strictly. Build the app using React Native components (.js/.tsx compatible) within the existing Expo project.",
+    "Implement the 3 distinct roles (Siswa, Guru, Wali Murid) seamlessly switchable from the login screen and header profile.",
+    "Include Quick-Fill Demo Chips below the login button for one-tap role testing: 'Siswa: Ahmad Fauzan', 'Guru: Budi Santoso, S.Pd.', 'Wali: Ortu Ahmad Fauzan'.",
+    "Keep navigation native and clean. When in student mode, provide standard bottom navigation (Beranda, Form Harian, Riwayat, Profil).",
+    "In teacher mode, render the KPI summary cards, filter pills (Semua, Belum Mengisi, Sudah), search bar, student list, and detail modal/screen.",
+    "Implement the 5-step form wizard with smooth step indicator, easy touch chips (minimum 44px touch target), and instant feedback.",
+    "Incorporate the Indonesian Islamic-modern school aesthetic: Forest Emerald (#047857), Sage (#D1FAE5), Golden Ochre (#D97706), Soft Slate (#F8FAFC).",
+    "All interactive elements MUST have valid 'testID' attributes matching the kebab-case schema specified in testIds.",
+    "Make sure the UI is 100% in Bahasa Indonesia as requested by the user."
+  ],
+  "test_id_conventions": {
+    "login": {
+      "role_siswa_tab": "login-role-siswa-tab",
+      "role_guru_tab": "login-role-guru-tab",
+      "role_wali_tab": "login-role-wali-tab",
+      "credential_input": "login-credential-input",
+      "submit_button": "login-submit-button",
+      "demo_chip_prefix": "login-demo-chip-"
+    },
+    "student": {
+      "status_banner": "student-status-banner",
+      "start_form_button": "student-start-form-button",
+      "backfill_banner": "student-backfill-banner",
+      "tab_home": "student-tab-home",
+      "tab_form": "student-tab-form",
+      "tab_history": "student-tab-history",
+      "tab_profile": "student-tab-profile"
+    },
+    "wizard": {
+      "step_indicator": "wizard-step-indicator",
+      "next_button": "wizard-next-button",
+      "prev_button": "wizard-prev-button",
+      "submit_button": "wizard-submit-button",
+      "sholat_chip_prefix": "wizard-sholat-chip-",
+      "nutrisi_chip_prefix": "wizard-nutrisi-chip-",
+      "ortu_chip_prefix": "wizard-ortu-chip-",
+      "belajar_chip_prefix": "wizard-belajar-chip-"
+    },
+    "teacher": {
+      "kpi_total": "teacher-kpi-total",
+      "kpi_submitted": "teacher-kpi-submitted",
+      "kpi_pending": "teacher-kpi-pending",
+      "kpi_percentage": "teacher-kpi-percentage",
+      "search_input": "teacher-search-input",
+      "filter_pill_all": "teacher-filter-all",
+      "filter_pill_pending": "teacher-filter-pending",
+      "filter_pill_submitted": "teacher-filter-submitted",
+      "add_student_button": "teacher-add-student-button",
+      "student_item_prefix": "teacher-student-item-"
+    },
+    "parent": {
+      "child_header": "parent-child-header",
+      "today_status": "parent-today-status",
+      "summary_7days": "parent-summary-7days",
+      "summary_30days": "parent-summary-30days"
+    }
+  }
+}
