@@ -39,12 +39,6 @@ const ROLE_CONFIG: Record<Role, { label: string; placeholder: string; helper?: s
   },
 };
 
-const DEMO_CHIPS: { role: Role; label: string; identifier: string }[] = [
-  { role: "siswa", label: "Coba Siswa (NIPD: 8459)", identifier: "8459" },
-  { role: "guru", label: "Coba Guru (catur_anjar_anggraini)", identifier: "catur_anjar_anggraini" },
-  { role: "wali_murid", label: "Coba Wali Murid (afika_putri_rievylia)", identifier: "afika_putri_rievylia" },
-];
-
 export default function LoginScreen() {
   const insets = useSafeAreaInsets();
   const { login } = useAuth();
@@ -59,13 +53,6 @@ export default function LoginScreen() {
 
   const handleRoleChange = (newRole: Role) => {
     setRole(newRole);
-    setError("");
-  };
-
-  const handleQuickFill = (chip: (typeof DEMO_CHIPS)[number]) => {
-    setRole(chip.role);
-    setIdentifier(chip.identifier);
-    setPassword("password123");
     setError("");
   };
 
@@ -175,20 +162,7 @@ export default function LoginScreen() {
           />
         </View>
 
-        <View style={styles.demoSection}>
-          <Text style={styles.demoTitle}>Demo Cepat untuk Pengujian</Text>
-          {DEMO_CHIPS.map((chip) => (
-            <TouchableOpacity
-              key={chip.role}
-              testID={`login-demo-chip-${chip.role}`}
-              style={styles.demoChip}
-              onPress={() => handleQuickFill(chip)}
-              activeOpacity={0.75}
-            >
-              <Text style={styles.demoChipText}>{chip.label}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -301,32 +275,5 @@ const styles = StyleSheet.create({
     ...typography.caption,
     color: colors.error,
     marginTop: spacing.sm,
-  },
-  demoSection: {
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
-    paddingTop: spacing.lg,
-  },
-  demoTitle: {
-    ...typography.caption,
-    color: colors.onSurfaceTertiary,
-    marginBottom: spacing.sm,
-    textAlign: "center",
-  },
-  demoChip: {
-    minHeight: touchTargets.chipHeight,
-    borderRadius: radii.chip,
-    borderWidth: 1.5,
-    borderColor: colors.borderBrand,
-    backgroundColor: colors.brandTertiary,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: spacing.sm,
-    paddingHorizontal: spacing.base,
-  },
-  demoChipText: {
-    ...typography.bodyMedium,
-    color: colors.onBrandTertiary,
-    fontWeight: "700",
   },
 });
