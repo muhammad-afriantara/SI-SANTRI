@@ -6,7 +6,7 @@
 
 ## 📌 DAFTAR ISI
 1. [Tentang Aplikasi](#1-tentang-aplikasi)
-2. [Panduan Instalasi Aplikasi (Android .APK & Web)](#2-panduan-instalasi-aplikasi)
+2. [Panduan Instalasi Aplikasi di HP Android (.APK)](#2-panduan-instalasi-aplikasi-di-hp-android-apk)
 3. [Panduan Login & Hak Akses (3 Peran)](#3-panduan-login--hak-akses)
 4. [Panduan Pengguna: SISWA (Santri)](#4-panduan-pengguna-siswa-santri)
 5. [Panduan Pengguna: GURU WALI (Wali Kelas)](#5-panduan-pengguna-guru-wali)
@@ -28,26 +28,20 @@ Infrastruktur aplikasi telah didukung oleh server cloud **FastAPI** dan database
 
 ---
 
-## 2. Panduan Instalasi Aplikasi
+## 2. Panduan Instalasi Aplikasi di HP Android (.APK)
 
-### A. Instalasi di HP Android (.APK)
-Aplikasi SI-SANTRI dapat di-install langsung di HP Android tanpa perlu membuka Google Play Store.
+Aplikasi **SI-SANTRI** didistribusikan dalam bentuk file instalasi mandiri (**`.apk`**) yang dapat dipasang langsung di HP Android guru, siswa, maupun wali murid tanpa melalui Google Play Store:
 
 1. **Download File APK**:
-   - Download file APK resmi SI-SANTRI dari link atau file yang dibagikan sekolah (contoh: `SI-SANTRI.apk`).
+   - Download file APK resmi SI-SANTRI yang dibagikan oleh pihak sekolah (misalnya via WhatsApp/Google Drive dengan nama `SI-SANTRI.apk`).
 2. **Izinkan Instalasi dari Sumber Tidak Dikenal**:
    - Saat file APK diklik/dibuka, jika muncul notifikasi *"Demi keamanan, ponsel Anda tidak diizinkan menginstal aplikasi tidak dikenal dari sumber ini"*:
    - Klik **Setelan / Pengaturan (Settings)** ➡️ aktifkan centang **"Izinkan dari sumber ini (Allow from this source)"**.
 3. **Peringatan Google Play Protect**:
-   - Jika muncul popup Google Play Protect bertuliskan *"Aplikasi diblokir"* (karena aplikasi dibuat khusus untuk internal sekolah dan belum masuk Play Store publik):
+   - Jika muncul popup Google Play Protect bertuliskan *"Aplikasi diblokir"* (hal ini wajar karena aplikasi dibuat khusus untuk internal sekolah dan belum didaftarkan komersial di Google Play Store):
    - Klik tulisan **"Detail selengkapnya (More details)"** ➡️ pilih **"Tetap instal (Install anyway)"**.
 4. **Selesai**:
-   - Buka aplikasi **SI-SANTRI** yang sudah terpasang di layar utama HP Anda.
-
-### B. Akses via Web Browser (Laptop / Komputer)
-Jika Anda menggunakan laptop/PC atau membuka via browser:
-- Buka tautan web yang disediakan sekolah.
-- Aplikasi web memiliki antarmuka yang responsif dan fitur yang sama persis dengan versi HP.
+   - Ikon aplikasi dengan nama **SI-SANTRI** akan muncul di layar menu HP Anda dan siap digunakan.
 
 ---
 
