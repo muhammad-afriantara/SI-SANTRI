@@ -16,6 +16,8 @@ export default function Index() {
     if (role === "siswa") router.replace("/(student)");
     else if (role === "guru") router.replace("/(teacher)");
     else if (role === "wali_murid") router.replace("/(parent)");
+    else if (role === "admin") router.replace("/(admin)" as any);
+
   }, [loading, token, role]);
 
   return (

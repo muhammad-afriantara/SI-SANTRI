@@ -1,9 +1,10 @@
+from typing import Optional
 import re
 import jwt
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from passlib.context import CryptContext
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, HTTPException, status, Query
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from database import db, JWT_SECRET, ACCESS_TOKEN_EXPIRE_MINUTES
@@ -52,11 +53,15 @@ def create_access_token(user_id: str, role: str) -> str:
     return jwt.encode(payload, JWT_SECRET, algorithm="HS256")
 
 
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme)):
-    if not credentials:
+async def get_current_user(
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme),
+    token: Optional[str] = Query(None),
+):
+    token_str = credentials.credentials if credentials else token
+    if not token_str:
         raise HTTPException(status_code=401, detail="Tidak terautentikasi")
     try:
-        payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=["HS256"])
+        payload = jwt.decode(token_str, JWT_SECRET, algorithms=["HS256"])
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Token tidak valid atau sudah kedaluwarsa")
 

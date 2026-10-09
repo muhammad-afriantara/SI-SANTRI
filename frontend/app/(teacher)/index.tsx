@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
@@ -30,39 +30,68 @@ export default function TeacherDashboard() {
   const [status, setStatus] = useState("semua");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [fetchingStudents, setFetchingStudents] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const latestReqIdRef = useRef(0);
 
   const loadKpi = useCallback(async () => {
-    const res = await apiRequest("/teacher/dashboard", { token });
-    setKpi(res);
+    try {
+      const res = await apiRequest("/teacher/dashboard", { token });
+      setKpi(res);
+    } catch (e) {
+      // silent
+    }
   }, [token]);
 
-  const loadStudents = useCallback(async () => {
-    const query = new URLSearchParams({ status, search }).toString();
-    const res = await apiRequest(`/teacher/students?${query}`, { token });
-    setStudents(res);
-  }, [token, status, search]);
+  const loadStudents = useCallback(
+    async (targetStatus?: string, targetSearch?: string) => {
+      const statusToQuery = targetStatus !== undefined ? targetStatus : status;
+      const searchToQuery = targetSearch !== undefined ? targetSearch : search;
+      const reqId = ++latestReqIdRef.current;
+      setFetchingStudents(true);
+
+      try {
+        const query = new URLSearchParams({ status: statusToQuery, search: searchToQuery }).toString();
+        const res = await apiRequest(`/teacher/students?${query}`, { token });
+        if (reqId === latestReqIdRef.current) {
+          setStudents(res || []);
+        }
+      } catch (e) {
+        // silent
+      } finally {
+        if (reqId === latestReqIdRef.current) {
+          setFetchingStudents(false);
+        }
+      }
+    },
+    [token, status, search]
+  );
 
   const loadAll = useCallback(async () => {
     try {
-      await Promise.all([loadKpi(), loadStudents()]);
+      await Promise.all([loadKpi(), loadStudents(status, search)]);
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [loadKpi, loadStudents]);
+  }, [loadKpi, loadStudents, status, search]);
 
   useFocusEffect(
     useCallback(() => {
       loadAll();
-    }, [loadAll])
+    }, [token])
   );
 
-  useEffect(() => {
-    if (!loading) {
-      loadStudents();
-    }
-  }, [status, search, loading, loadStudents]);
+  const handleStatusChange = (newStatus: string) => {
+    if (newStatus === status) return;
+    setStatus(newStatus);
+    loadStudents(newStatus, search);
+  };
+
+  const handleSearchChange = (text: string) => {
+    setSearch(text);
+    loadStudents(status, text);
+  };
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -84,14 +113,8 @@ export default function TeacherDashboard() {
           <Text style={styles.headerTitle} testID="teacher-dashboard-title">Dashboard Guru</Text>
           <Text style={styles.headerSubtitle}>{profile?.name}</Text>
         </View>
-        <TouchableOpacity
-          testID="teacher-add-student-button"
-          style={styles.addButton}
-          onPress={() => router.push("/add-student")}
-        >
-          <Text style={styles.addButtonText}>+ Siswa</Text>
-        </TouchableOpacity>
       </View>
+
 
       <FlatList
         testID="teacher-student-list"
@@ -104,14 +127,14 @@ export default function TeacherDashboard() {
             <View style={styles.kpiGrid}>
               <KpiCard testID="teacher-kpi-total" label="Total Siswa" value={kpi?.total_students} />
               <KpiCard testID="teacher-kpi-submitted" label="Sudah Mengisi" value={kpi?.submitted_today} tone="success" />
-              <KpiCard testID="teacher-kpi-pending" label="Belum Mengisi" value={kpi?.pending_today} tone="warning" />
-              <KpiCard testID="teacher-kpi-percentage" label="Persentase" value={`${kpi?.percentage}%`} tone="info" />
+              <KpiCard testID="teacher-kpi-score" label="Rata-rata Skor" value={kpi?.average_score ? `${kpi.average_score} Poin` : "-"} tone="info" />
+              <KpiCard testID="teacher-kpi-confirmed" label="Diverifikasi Wali" value={kpi?.parent_confirmed_count ?? 0} tone="success" />
             </View>
 
             <TextInput
               testID="teacher-search-input"
               value={search}
-              onChangeText={setSearch}
+              onChangeText={handleSearchChange}
               placeholder="Cari nama atau NIPD siswa..."
               placeholderTextColor={colors.onSurfaceTertiary}
               style={styles.searchInput}
@@ -123,11 +146,14 @@ export default function TeacherDashboard() {
                   key={f.key}
                   testID={`teacher-filter-${f.key === "semua" ? "all" : f.key}`}
                   style={[styles.filterChip, status === f.key && styles.filterChipActive]}
-                  onPress={() => setStatus(f.key)}
+                  onPress={() => handleStatusChange(f.key)}
                 >
                   <Text style={[styles.filterChipText, status === f.key && styles.filterChipTextActive]}>{f.label}</Text>
                 </TouchableOpacity>
               ))}
+              {fetchingStudents && (
+                <ActivityIndicator size="small" color={colors.brandPrimary} style={{ marginLeft: spacing.xs }} />
+              )}
             </View>
           </View>
         }

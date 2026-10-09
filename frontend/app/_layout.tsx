@@ -31,9 +31,11 @@ export default function RootLayout() {
                   <Stack.Screen name="(student)" />
                   <Stack.Screen name="(teacher)" />
                   <Stack.Screen name="(parent)" />
+                  <Stack.Screen name="(admin)" />
                   <Stack.Screen name="teacher-student/[id]" />
                   <Stack.Screen name="add-student" options={{ presentation: "modal" }} />
                   <Stack.Screen name="backfill" />
+
                 </Stack>
               </ToastProvider>
             </AuthProvider>

@@ -44,6 +44,10 @@ export const radii = {
   card: 16,
   banner: 20,
   badge: 8,
+  input: 12,
+  sm: 8,
+  md: 12,
+  xs: 4,
 };
 
 export const typography = {

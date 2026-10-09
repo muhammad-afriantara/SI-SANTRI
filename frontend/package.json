@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "preinstall": "node ./scripts/cmd-guard.js --preinstall",
     "start": "expo start",
@@ -23,6 +23,7 @@
     "expo-font": "57.0.4",
     "expo-haptics": "57.0.3",
     "expo-image": "57.0.5",
+    "expo-image-picker": "~57.0.20",
     "expo-linear-gradient": "57.0.2",
     "expo-linking": "57.0.10",
     "expo-router": "57.0.22",

@@ -97,8 +97,13 @@ class TestAuth:
         assert "salah" in body["detail"].lower()
 
     def test_invalid_role_rejected(self, api_client):
-        r = do_login(api_client, "admin", "someone")
+        r = do_login(api_client, "superadmin", "someone")
         assert r.status_code == 400
+
+    def test_admin_login_success(self, api_client):
+        r = do_login(api_client, "admin", "admin", password="admin123")
+        assert r.status_code == 200
+        assert r.json()["role"] == "admin"
 
     def test_nonexistent_user(self, api_client):
         r = do_login(api_client, "siswa", "0000000")
@@ -219,28 +224,64 @@ class TestTeacherDashboard:
         assert d["recap_7_days"]["days"] == 7
         assert d["recap_30_days"]["days"] == 30
 
-    def test_add_student_and_immediate_login(self, api_client, guru_token):
-        unique = uuid.uuid4().hex[:6]
-        new_nipd = f"9{unique[:5]}"
+    def test_teacher_add_student_forbidden(self, api_client, guru_token):
+        # Sesuai Opsi 1 (Strict Admin Only), penambahan siswa oleh guru harus ditolak (403)
         payload = {
-            "name": f"TEST_Siswa {unique}",
-            "nipd": new_nipd,
+            "name": "TEST_Siswa Forbidden",
+            "nipd": "99999",
             "class_id": "7A",
         }
         r = api_client.post(f"{API}/teacher/students", json=payload, headers=auth_headers(guru_token))
+        assert r.status_code == 403
+        assert "hanya dapat dilakukan oleh admin" in r.json()["detail"].lower()
+
+
+class TestAdminManagement:
+    @pytest.fixture(scope="class")
+    def admin_token(self, api_client):
+        r = do_login(api_client, "admin", "admin", password="admin123")
+        assert r.status_code == 200
+        return r.json()["access_token"]
+
+    def test_admin_dashboard(self, api_client, admin_token):
+        r = api_client.get(f"{API}/admin/dashboard", headers=auth_headers(admin_token))
+        assert r.status_code == 200
+        data = r.json()
+        assert "total_students" in data
+        assert "total_teachers" in data
+
+    def test_admin_add_student_and_immediate_login(self, api_client, admin_token):
+        unique = uuid.uuid4().hex[:6]
+        new_nipd = f"9{unique[:5]}"
+        payload = {
+            "name": f"TEST_AdminSiswa {unique}",
+            "nipd": new_nipd,
+            "class_id": "7A",
+        }
+        r = api_client.post(f"{API}/admin/students", json=payload, headers=auth_headers(admin_token))
         assert r.status_code == 200
         data = r.json()
         assert data["nipd"] == new_nipd
 
-        # new student should log in immediately
+        # new student logs in
         login_r = do_login(api_client, "siswa", new_nipd)
         assert login_r.status_code == 200
-        assert login_r.json()["profile"]["nipd"] == new_nipd
 
-        # new parent should log in immediately too
+        # new parent logs in
         parent_username = data["login_wali_murid"]["username"]
         parent_login = do_login(api_client, "wali_murid", parent_username)
         assert parent_login.status_code == 200
+
+        # cleanup test student
+        student_id = data["student_id"]
+        del_r = api_client.delete(f"{API}/admin/students/{student_id}", headers=auth_headers(admin_token))
+        assert del_r.status_code == 200
+
+    def test_admin_export_recap(self, api_client, admin_token):
+        r = api_client.get(f"{API}/admin/export-recap?days=30", headers=auth_headers(admin_token))
+        assert r.status_code == 200
+        assert "text/csv" in r.headers.get("content-type", "")
+
 
 
 class TestParentDashboard:

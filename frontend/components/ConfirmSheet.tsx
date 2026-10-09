@@ -8,8 +8,10 @@ export function ConfirmSheet({
   visible,
   title,
   message,
-  confirmLabel = "Ya, Keluar",
-  cancelLabel = "Batal",
+  confirmLabel,
+  cancelLabel,
+  confirmText,
+  cancelText,
   onConfirm,
   onCancel,
   testID,
@@ -19,11 +21,16 @@ export function ConfirmSheet({
   message: string;
   confirmLabel?: string;
   cancelLabel?: string;
+  confirmText?: string;
+  cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
   testID?: string;
 }) {
   const insets = useSafeAreaInsets();
+  const cLabel = confirmText || confirmLabel || "Ya, Keluar";
+  const cnLabel = cancelText || cancelLabel || "Batal";
+
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
       <Pressable style={styles.overlay} onPress={onCancel}>
@@ -31,9 +38,9 @@ export function ConfirmSheet({
           <View testID={testID} style={styles.handle} />
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.message}>{message}</Text>
-          <PrimaryButton title={confirmLabel} onPress={onConfirm} variant="danger" testID="confirm-sheet-confirm-button" />
+          <PrimaryButton title={cLabel} onPress={onConfirm} variant="danger" testID="confirm-sheet-confirm-button" />
           <View style={{ height: spacing.sm }} />
-          <PrimaryButton title={cancelLabel} onPress={onCancel} variant="secondary" testID="confirm-sheet-cancel-button" />
+          <PrimaryButton title={cnLabel} onPress={onCancel} variant="secondary" testID="confirm-sheet-cancel-button" />
         </Pressable>
       </Pressable>
     </Modal>

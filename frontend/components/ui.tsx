@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, ViewStyle } from "react-native";
 import { colors, radii, spacing, typography, touchTargets } from "../utils/theme";
 
-export function Card({ children, style, testID }: { children: React.ReactNode; style?: ViewStyle; testID?: string }) {
+export function Card({ children, style, testID }: { children: React.ReactNode; style?: any; testID?: string }) {
   return <View testID={testID} style={[styles.card, style]}>{children}</View>;
 }
 
@@ -60,20 +60,36 @@ export function Chip({
   selected,
   onPress,
   testID,
+  tone = "default",
 }: {
   label: string;
   selected?: boolean;
   onPress?: () => void;
   testID?: string;
+  tone?: "default" | "danger" | "success" | "warning";
 }) {
+  const isDanger = tone === "danger";
   return (
     <TouchableOpacity
       testID={testID}
       onPress={onPress}
       activeOpacity={0.75}
-      style={[styles.chip, selected && styles.chipSelected]}
+      style={[
+        styles.chip,
+        isDanger && { borderColor: "#FCA5A5" },
+        selected && styles.chipSelected,
+        selected && isDanger && { backgroundColor: colors.error, borderColor: colors.error },
+      ]}
     >
-      <Text style={[styles.chipText, selected && styles.chipTextSelected]} numberOfLines={2}>
+      <Text
+        style={[
+          styles.chipText,
+          isDanger && { color: colors.error },
+          selected && styles.chipTextSelected,
+          selected && isDanger && { color: "#FFFFFF" },
+        ]}
+        numberOfLines={2}
+      >
         {label}
       </Text>
     </TouchableOpacity>
@@ -100,9 +116,9 @@ export function Badge({ label, tone = "success" }: { label: string; tone?: "succ
   );
 }
 
-export function ProgressBar({ progress }: { progress: number }) {
+export function ProgressBar({ progress, style }: { progress: number; style?: any }) {
   return (
-    <View style={styles.progressTrack}>
+    <View style={[styles.progressTrack, style]}>
       <View style={[styles.progressFill, { width: `${Math.max(0, Math.min(1, progress)) * 100}%` }]} />
     </View>
   );

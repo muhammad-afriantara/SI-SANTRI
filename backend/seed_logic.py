@@ -10,12 +10,61 @@ logger = logging.getLogger(__name__)
 SEED_FILE = Path(__file__).parent / "data" / "seed_data_santri.json"
 
 
+async def ensure_admin_and_indexes():
+    """Ensure admin account and necessary indexes exist, idempotent."""
+    admin_user = await db.users.find_one({"role": "admin"})
+    if not admin_user:
+        admin_doc = {
+            "_id": "U_ADMIN001",
+            "role": "admin",
+            "username": "admin",
+            "password_hash": hash_password(DEFAULT_PASSWORD),
+            "display_name": "Admin Sekolah",
+            "ref_id": "ADMIN001",
+            "is_active": True,
+            "created_at": now_jakarta(),
+        }
+        await db.users.insert_one(admin_doc)
+        logger.info("Default admin user created: admin / %s", DEFAULT_PASSWORD)
+
+    # Ensure admin index
+    try:
+        await db.users.create_index(
+            [("role", 1), ("username", 1)],
+            unique=True,
+            partialFilterExpression={"role": "admin"},
+            name="uniq_admin_username",
+        )
+    except Exception as e:
+        logger.warning("Index uniq_admin_username notice: %s", e)
+
+    # Ensure student NIPD index
+    try:
+        await db.students.create_index([("nipd", 1)], unique=True, name="uniq_student_nipd")
+    except Exception as e:
+        logger.warning("Index uniq_student_nipd notice: %s", e)
+
+    # Ensure all 15 standard classes (7A-7E, 8A-8E, 9A-9E) exist
+    standard_classes = [
+        "7A", "7B", "7C", "7D", "7E",
+        "8A", "8B", "8C", "8D", "8E",
+        "9A", "9B", "9C", "9D", "9E",
+    ]
+    for c in standard_classes:
+        await db.classes.update_one(
+            {"_id": c},
+            {"$setOnInsert": {"_id": c, "name": c}},
+            upsert=True,
+        )
+
+
 async def seed_if_needed():
     """Seed classes, teachers, students, parents, users from seed_data_santri.json
     only if the users collection is currently empty."""
     existing = await db.users.count_documents({})
     if existing > 0:
         logger.info("Seed skipped: %d users already exist", existing)
+        await ensure_admin_and_indexes()
         return
 
     # Drop any pre-existing indexes (e.g. from a legacy schema) so our own
@@ -120,8 +169,11 @@ async def seed_if_needed():
     await db.daily_reports.create_index([("activity_date", 1)])
     await db.students.create_index([("class_id", 1)])
     await db.students.create_index([("teacher_id", 1)])
+    await ensure_admin_and_indexes()
 
     logger.info(
         "Seed complete: %d classes, %d teachers, %d students, %d parents, %d users",
         len(class_docs), len(teacher_docs), len(student_docs), len(parent_docs), len(user_docs),
     )
+
+

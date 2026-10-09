@@ -12,7 +12,7 @@ const CLASS_OPTIONS = ["7A", "7B", "7C", "7D", "8A", "8B", "8C", "8D", "8E"];
 
 export default function AddStudentScreen() {
   const insets = useSafeAreaInsets();
-  const { token, profile } = useAuth();
+  const { token, profile, role } = useAuth();
   const { show } = useToast();
   const [name, setName] = useState("");
   const [nipd, setNipd] = useState("");
@@ -20,13 +20,17 @@ export default function AddStudentScreen() {
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
+    if (role !== "admin") {
+      show("Hanya Admin Sekolah yang dapat menambahkan siswa baru.", "error");
+      return;
+    }
     if (!name.trim() || !nipd.trim() || !classId) {
       show("Mohon lengkapi nama, NIPD, dan kelas.", "error");
       return;
     }
     setSubmitting(true);
     try {
-      const res = await apiRequest("/teacher/students", {
+      const res = await apiRequest("/admin/students", {
         method: "POST",
         token,
         body: { name: name.trim(), nipd: nipd.trim(), class_id: classId },
@@ -40,6 +44,22 @@ export default function AddStudentScreen() {
       setSubmitting(false);
     }
   };
+
+  if (role !== "admin") {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.surface, padding: spacing.xl, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 32, marginBottom: spacing.md }}>🔒</Text>
+        <Text style={[typography.h2, { color: colors.onSurface, textAlign: "center", marginBottom: spacing.sm }]}>
+          Akses Khusus Admin Sekolah
+        </Text>
+        <Text style={[typography.body, { color: colors.onSurfaceSecondary, textAlign: "center", marginBottom: spacing.xl }]}>
+          Penambahan dan pengelolaan data siswa baru kini sepenuhnya dikelola terpusat oleh Admin Sekolah (Tata Usaha).
+        </Text>
+        <PrimaryButton title="Kembali" onPress={() => router.back()} />
+      </View>
+    );
+  }
+
 
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.surface }} behavior={Platform.OS === "ios" ? "padding" : "height"}>

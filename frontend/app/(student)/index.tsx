@@ -68,6 +68,13 @@ export default function StudentHome() {
           {filled ? (
             <>
               <Text style={styles.statusTitle}>Alhamdulillah, kegiatan hari ini sudah diisi!</Text>
+              {data?.today_report?.scores && (
+                <View style={styles.todayScoreBox}>
+                  <Text style={styles.todayScoreText}>
+                    ⭐ Skor Hari Ini: {data.today_report.scores.total} / 87 Poin ({data.today_report.scores.percentage}%)
+                  </Text>
+                </View>
+              )}
               <Text style={styles.statusSubtitle}>Terima kasih sudah rutin mengisi laporan harian.</Text>
               <PrimaryButton
                 title="Lihat / Ubah Laporan"
@@ -75,6 +82,7 @@ export default function StudentHome() {
                 testID="student-view-edit-report-button"
                 style={{ marginTop: spacing.md }}
               />
+
             </>
           ) : (
             <>
@@ -90,6 +98,27 @@ export default function StudentHome() {
           )}
         </View>
       </Card>
+
+      {data?.latest_parent_note && (
+        <Card style={styles.parentNoteCard}>
+          <View style={styles.parentNoteHeader}>
+            <Text style={styles.parentNoteTitle}>
+              💌 Pesan Motivasi dari{" "}
+              {data.latest_parent_note.parent_name &&
+              !data.latest_parent_note.parent_name.startsWith("Wali dari")
+                ? data.latest_parent_note.parent_name
+                : "Orang Tua"}
+            </Text>
+            <Text style={styles.parentNoteDate}>
+              {new Date(data.latest_parent_note.created_at).toLocaleDateString("id-ID", {
+                day: "numeric",
+                month: "short",
+              })}
+            </Text>
+          </View>
+          <Text style={styles.parentNoteText}>"{data.latest_parent_note.message}"</Text>
+        </Card>
+      )}
 
       {missedCount > 0 && (
         <Card style={styles.backfillCard} >
@@ -122,6 +151,33 @@ const styles = StyleSheet.create({
   statusCardPending: { backgroundColor: colors.prayerGoldLight, borderColor: "#FDE68A" },
   statusTitle: { ...typography.h3, color: colors.onSurface },
   statusSubtitle: { ...typography.body, color: colors.onSurfaceSecondary, marginTop: spacing.xs },
+  parentNoteCard: {
+    backgroundColor: "#FDF2F8",
+    borderColor: "#FBCFE8",
+    borderWidth: 1.5,
+    marginBottom: spacing.base,
+  },
+  parentNoteHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.xs },
+  parentNoteTitle: { ...typography.caption, color: "#9D174D", fontWeight: "700" },
+  parentNoteDate: { ...typography.caption, color: colors.onSurfaceTertiary },
+  parentNoteText: { ...typography.body, color: colors.onSurface, fontStyle: "italic", lineHeight: 20 },
   backfillCard: { backgroundColor: "#FFF7ED", borderColor: "#FED7AA" },
   backfillTitle: { ...typography.h3, color: colors.warning },
+  todayScoreBox: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: radii.button,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs + 2,
+    marginVertical: spacing.sm,
+    alignSelf: "flex-start",
+    borderWidth: 1,
+    borderColor: "#A7F3D0",
+  },
+  todayScoreText: {
+    fontSize: 13,
+    fontWeight: "800",
+    color: "#065F46",
+  },
 });
+
+

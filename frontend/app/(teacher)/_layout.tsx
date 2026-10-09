@@ -33,18 +33,34 @@ export default function TeacherTabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Dashboard",
+          title: "Siswa",
           tabBarTestID: "teacher-tab-dashboard",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="📊" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="👥" focused={focused} />,
+        } as any}
+      />
+      <Tabs.Screen
+        name="analysis"
+        options={{
+          title: "Analisis",
+          tabBarTestID: "teacher-tab-analysis",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="📊" focused={focused} />,
+        } as any}
+      />
+      <Tabs.Screen
+        name="announcements"
+        options={{
+          title: "Pengumuman",
+          tabBarTestID: "teacher-tab-announcements",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="📢" focused={focused} />,
+        } as any}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: "Akun",
           tabBarTestID: "teacher-tab-account",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="👤" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="👤" focused={focused} />,
+        } as any}
       />
     </Tabs>
   );

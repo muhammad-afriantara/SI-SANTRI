@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { router } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAuth } from "../../context/AuthContext";
 import { colors, spacing, typography } from "../../utils/theme";
 import { Card, PrimaryButton } from "../../components/ui";
+import { ChangePasswordModal } from "../../components/ChangePasswordModal";
 
 export default function StudentAccount() {
   const insets = useSafeAreaInsets();
   const { profile, logout } = useAuth();
+  const [changePassVisible, setChangePassVisible] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -33,7 +35,28 @@ export default function StudentAccount() {
           <Text style={styles.value}>{profile?.teacher_name}</Text>
         </View>
       </Card>
-      <PrimaryButton title="Keluar" onPress={handleLogout} variant="danger" testID="student-logout-button" style={{ marginTop: spacing.lg }} />
+
+      <PrimaryButton
+        title="🔑 Ubah Password"
+        onPress={() => setChangePassVisible(true)}
+        variant="secondary"
+        testID="student-change-password-button"
+        style={{ marginTop: spacing.lg }}
+      />
+
+      <PrimaryButton
+        title="Keluar"
+        onPress={handleLogout}
+        variant="danger"
+        testID="student-logout-button"
+        style={{ marginTop: spacing.md }}
+      />
+
+      <ChangePasswordModal
+        visible={changePassVisible}
+        onClose={() => setChangePassVisible(false)}
+        title="Ubah Password Siswa"
+      />
     </View>
   );
 }

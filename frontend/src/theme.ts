@@ -108,8 +108,8 @@ setColorScheme?.(themes.dark ? null : defaultScheme);
 
 export function useTheme(): { scheme: ColorScheme; colors: ThemeColors } {
   const system = useColorScheme();
-  const scheme: ColorScheme = system && themes[system] ? system : defaultScheme;
-  return { scheme, colors: themes[scheme] ?? themes.light };
+  const scheme: ColorScheme = system === "dark" && themes.dark ? "dark" : defaultScheme;
+  return { scheme, colors: (scheme === "dark" && themes.dark ? themes.dark : themes.light) };
 }
 
 // Themed StyleSheet: returns a hook that builds the sheet from the active

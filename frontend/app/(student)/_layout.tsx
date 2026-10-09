@@ -35,32 +35,38 @@ export default function StudentTabsLayout() {
         options={{
           title: "Beranda",
           tabBarTestID: "student-tab-home",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="🏠" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="🏠" focused={focused} />,
+        } as any}
       />
       <Tabs.Screen
         name="form"
         options={{
-          title: "Isi Form",
-          tabBarTestID: "student-tab-form",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="📝" focused={focused} />,
+          title: "Jurnal",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="📝" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="history"
         options={{
-          title: "Riwayat",
-          tabBarTestID: "student-tab-history",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="🗂️" focused={focused} />,
+          title: "Perkembangan",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="📈" focused={focused} />,
         }}
+      />
+      <Tabs.Screen
+        name="apresiasi"
+        options={{
+          title: "Apresiasi",
+          tabBarTestID: "student-tab-apresiasi",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="🏅" focused={focused} />,
+        } as any}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: "Akun",
           tabBarTestID: "student-tab-profile",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="👤" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="👤" focused={focused} />,
+        } as any}
       />
     </Tabs>
   );

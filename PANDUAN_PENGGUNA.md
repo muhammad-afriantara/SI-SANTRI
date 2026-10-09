@@ -1,275 +1,307 @@
-# 📖 PANDUAN PENGGUNAAN APLIKASI SI-SANTRI
+# 📖 PANDUAN PENGGUNAAN APLIKASI SI-SANTRI v2
 **Sistem Pengawasan Tingkah Laku Sehari-hari Santri / Siswa**  
-**SMP NEGERI 2 PANJI**
+**SMP NEGERI 2 PANJI, SITUBONDO**
 
 ---
 
 ## 📌 DAFTAR ISI
-1. [Tentang Aplikasi](#1-tentang-aplikasi)
-2. [Panduan Instalasi Aplikasi di HP Android (.APK)](#2-panduan-instalasi-aplikasi-di-hp-android-apk)
-3. [Panduan Login & Hak Akses (3 Peran)](#3-panduan-login--hak-akses)
+1. [Tentang Aplikasi & Konsep v2](#1-tentang-aplikasi--konsep-v2)
+2. [Panduan Instalasi Aplikasi Android (.APK)](#2-panduan-instalasi-aplikasi-android-apk)
+3. [Panduan Login & Hak Akses (4 Peran)](#3-panduan-login--hak-akses-4-peran)
 4. [Panduan Pengguna: SISWA (Santri)](#4-panduan-pengguna-siswa-santri)
-5. [Panduan Pengguna: GURU WALI (Wali Kelas)](#5-panduan-pengguna-guru-wali)
-6. [Panduan Pengguna: WALI MURID (Orang Tua)](#6-panduan-pengguna-wali-murid)
-7. [Tanya Jawab (FAQ) & Penyelesaian Masalah](#7-tanya-jawab-faq--penyelesaian-masalah)
+5. [Panduan Pengguna: GURU WALI (Wali Kelas)](#5-panduan-pengguna-guru-wali-wali-kelas)
+6. [Panduan Pengguna: WALI MURID (Orang Tua)](#6-panduan-pengguna-wali-murid-orang-tua)
+7. [Panduan Pengguna: ADMIN SEKOLAH](#7-panduan-pengguna-admin-sekolah)
+8. [Sistem Kata Sandi & Pemulihan Darurat](#8-sistem-kata-sandi--pemulihan-darurat)
+9. [Tanya Jawab (FAQ) & Penyelesaian Masalah](#9-tanya-jawab-faq--penyelesaian-masalah)
 
 ---
 
-## 1. Tentang Aplikasi
+## 1. Tentang Aplikasi & Konsep v2
 
-**SI-SANTRI** adalah platform digital monitoring terpadu yang dirancang khusus untuk **SMP Negeri 2 Panji** guna memantau, membimbing, dan membentuk karakter serta kebiasaan positif santri/siswa sehari-hari, baik di lingkungan sekolah maupun di rumah.
+**SI-SANTRI v2** adalah platform digital pembiasaan karakter dan monitoring terpadu yang dirancang khusus untuk **SMP Negeri 2 Panji** guna membimbing, memantau, dan mengapresiasi kebiasaan positif santri/siswa sehari-hari di sekolah maupun di rumah.
 
-Aplikasi ini menghubungkan tiga pihak secara *real-time*:
-- **Siswa (Santri)**: Mengisi jurnal pembiasaan dan ibadah harian mandiri.
-- **Guru Wali**: Memantau kedisiplinan dan rekap kepatuhan siswa binaan satu kelas.
-- **Wali Murid**: Memantau perkembangan ibadah dan aktivitas harian anaknya dari rumah.
-
-Aplikasi ini beroperasi secara *online* dan tersinkronisasi otomatis selama 24 jam, sehingga data yang diisi oleh siswa dapat langsung dipantau oleh guru dan orang tua secara *real-time*.
+### 🌟 Pembaruan Utama pada Versi 2:
+1. **Mesin Skor Karakter Otomatis (Maksimal 87 Poin)**: Jurnal santri dinilai secara obyektif ke dalam 4 pilar utama: Ibadah, Belajar, Akhlak, dan Pengembangan Diri.
+2. **Keterlibatan Aktif Orang Tua**: Wali murid memverifikasi kegiatan akhlak di rumah serta dapat mengirimkan pesan motivasi harian kepada anak.
+3. **Lampiran Foto Bukti**: Santri dapat melampirkan foto dokumentasi aktivitas baik langsung dari kamera maupun galeri.
+4. **Analisis Karakter & Pendampingan Guru**: Guru wali kelas memiliki dashboard analisis tren kepatuhan, catatan bimbingan konseling (mentoring), dan fitur siaran pengumuman kelas.
+5. **Gamifikasi & Lencana Apresiasi (Badges)**: Santri yang konsisten beribadah dan berakhlak baik akan membuka lencana prestasi karakter (*Pejuang Subuh*, *Anak Berbakti*, *Penuntut Ilmu*, dll.).
+6. **Manajemen Terpusat oleh Admin Sekolah (Strict Admin Only)**: Seluruh data master santri, mutasi kelas, dan guru dikelola secara terpusat oleh Admin/Tata Usaha untuk menjamin validitas Dapodik. Guru tidak lagi dibebani tugas administrasi penambahan data siswa.
+7. **Ekspor Laporan Excel/CSV**: Rekap laporan kepatuhan karakter dapat diunduh langsung dalam format Excel oleh Guru dan Admin.
 
 ---
 
-## 2. Panduan Instalasi Aplikasi di HP Android (.APK)
+## 2. Panduan Instalasi Aplikasi Android (.APK)
 
-Aplikasi **SI-SANTRI** didistribusikan dalam bentuk file instalasi mandiri (**`.apk`**) yang dapat dipasang langsung di HP Android guru, siswa, maupun wali murid tanpa melalui Google Play Store:
+Aplikasi **SI-SANTRI v2** didistribusikan dalam bentuk file instalasi mandiri (**`.apk`**):
 
-1. **Download File APK**:
-   - Download file APK resmi SI-SANTRI yang dibagikan oleh pihak sekolah (misalnya via WhatsApp/Google Drive dengan nama `SI-SANTRI.apk`).
-2. **Izinkan Instalasi dari Sumber Tidak Dikenal**:
-   - Saat file APK diklik/dibuka, jika muncul notifikasi *"Demi keamanan, ponsel Anda tidak diizinkan menginstal aplikasi tidak dikenal dari sumber ini"*:
-   - Klik **Setelan / Pengaturan (Settings)** ➡️ aktifkan centang **"Izinkan dari sumber ini (Allow from this source)"**.
+1. **Unduh File APK**: Unduh file APK resmi yang dibagikan oleh pihak sekolah (versi `2.0.0`).
+2. **Izinkan Sumber Tidak Dikenal**:
+   - Jika muncul peringatan *"Ponsel Anda tidak diizinkan menginstal aplikasi dari sumber ini"*, buka **Pengaturan / Settings** ➡️ aktifkan **"Izinkan dari sumber ini (Allow from this source)"**.
 3. **Peringatan Google Play Protect**:
-   - Jika muncul popup Google Play Protect bertuliskan *"Aplikasi diblokir"* (hal ini wajar karena aplikasi dibuat khusus untuk internal sekolah dan belum didaftarkan komersial di Google Play Store):
-   - Klik tulisan **"Detail selengkapnya (More details)"** ➡️ pilih **"Tetap instal (Install anyway)"**.
-4. **Selesai**:
-   - Ikon aplikasi dengan nama **SI-SANTRI** akan muncul di layar menu HP Anda dan siap digunakan.
+   - Jika muncul dialog Play Protect, ketuk **"Detail selengkapnya (More details)"** ➡️ pilih **"Tetap instal (Install anyway)"**. Peringatan ini wajar karena aplikasi ditujukan untuk internal SMPN 2 Panji dan tidak dipublikasikan ke Play Store komersial.
+4. **Buka Aplikasi**: Ikon **SI-SANTRI** akan muncul di layar ponsel Anda dan siap digunakan.
 
 ---
 
-## 3. Panduan Login & Hak Akses
+## 3. Panduan Login & Hak Akses (4 Peran)
 
-Halaman login SI-SANTRI dilengkapi dengan **Pemilih Peran (Role Selector)** di bagian atas:
-1. **Siswa**
-2. **Guru Wali**
-3. **Wali Murid**
+Halaman login SI-SANTRI v2 dilengkapi **Tab Pemilih Peran**:
+1. **Siswa**: Masuk menggunakan **NIPD** (contoh: `8459`).
+2. **Guru Wali**: Masuk menggunakan **Username Guru** (contoh: `catur_anjar_anggraini` atau nama guru).
+3. **Wali Murid**: Masuk menggunakan **Username / Nama Anak** (contoh: `afika_putri_rievylia`).
+4. **Admin**: Masuk menggunakan **Username Admin** (`admin`).
 
-> ⚠️ **PENTING**: Pastikan Anda memilih tab peran yang sesuai sebelum memasukkan identitas login!
-
-```
-┌────────────────────────────────────────────────────────┐
-│                      SI SANTRI                         │
-│       SMP NEGERI 2 PANJI - SISTEM MONITORING           │
-├────────────────────────────────────────────────────────┤
-│     [ SISWA ]    │   [ GURU WALI ]   │ [ WALI MURID ]  │
-├────────────────────────────────────────────────────────┤
-│ Identitas Login  : [                                 ] │
-│ Kata Sandi       : [                               ] 👁 │
-│                    [   TOMBOL MASUK   ]                │
-└────────────────────────────────────────────────────────┘
-```
-
-### Informasi Akun & Kata Sandi:
-- **Kata Sandi Default**: `password123` (berlaku untuk semua pengguna awal).
+> 💡 **Kata Sandi Default**: Seluruh akun baru menggunakan kata sandi awal `password123` (Admin: `admin123`). Setiap pengguna sangat disarankan segera mengubah kata sandinya melalui menu **Akun**.
 
 ---
 
 ## 4. Panduan Pengguna: SISWA (Santri)
 
-### A. Cara Login Siswa
-1. Pilih tab **"Siswa"**.
-2. Masukkan **NIPD (Nomor Induk Peserta Didik)** Anda (contoh: `8459`).
-3. Masukkan kata sandi (default: `password123`).
-4. Klik **Masuk**.
+Aplikasi Siswa dilengkapi dengan **5 Tab Menu Navigasi Utama**:
+- 🏠 **Beranda**: Ringkasan status hari ini, pesan motivasi orang tua, dan pengumuman guru.
+- 📝 **Jurnal**: Pengisian jurnal harian 4 kategori dengan penghitung skor otomatis.
+- 📈 **Perkembangan**: Grafik statistik skor karakter dan kepatuhan sholat (7, 14, 30 hari).
+- 🏅 **Apresiasi**: Koleksi lencana karakter yang telah diraih dan progres misi aktif.
+- 👤 **Akun**: Profil santri, ganti kata sandi mandiri, dan tombol keluar.
 
 ---
 
-### B. Dashboard Siswa
-Setelah login, santri akan melihat:
-- **Kartu Profil**: Nama lengkap, kelas, dan NIPD santri.
-- **Status Jurnal Hari Ini**:
-  - Tanda **"Sudah Mengisi"** (jika sudah tuntas hari ini).
-  - Tanda **"Belum Mengisi"** (jika belum mengisi hari ini).
-- **Banner Peringatan Hari Terlewat**: Menampilkan jumlah hari yang terlewat (jika ada) dan tombol untuk melengkapinya.
-- **Kartu Ringkasan Kepatuhan Sholat Berjamaah**: Menampilkan persentase sholat berjamaah dalam **7 Hari** dan **30 Hari** terakhir.
-- **Tombol Aksi Utama**:
-  - Tombol **"Isi Kegiatan Hari Ini"** (atau *"Ubah Kegiatan Hari Ini"* jika ingin mengedit).
+### A. Mengisi Jurnal Harian (4 Pilar Karakter — Maks 87 Poin)
+
+Santri mengisi formulir jurnal yang dipandu dengan **Estimasi Skor Langsung (*Live Score Banner*)**:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│ 🌟 Estimasi Skor Karakter: 82 / 87 Poin  [ Sangat Baik ]   │
+│ Ibadah: 20/20 · Belajar: 36/39 · Akhlak: 15/15 · Diri: 11/13│
+└────────────────────────────────────────────────────────────┘
+```
+
+#### 1. Pilar 1: Ibadah — Sholat Fardhu 5 Waktu (Maks 20 Poin)
+Untuk setiap waktu sholat (**Subuh**, **Dzuhur**, **Ashar**, **Maghrib**, **Isya**), pilih status yang sesuai:
+* 🕌 **Berjamaah (+4 Poin)**: Berjamaah di masjid/musholla atau bersama keluarga.
+* 👤 **Munfarid (+3 Poin)**: Sholat sendirian tepat waktu.
+* 🌸 **Berhalangan (0 Poin)**: Khusus santriwati yang uzur syar'i (haid).
+* ⚠️ **Tidak Sholat (-3 Poin)**: Jika meninggalkan sholat.
+
+#### 2. Pilar 2: Belajar & Tugas (Maks 39 Poin)
+Pilih daftar kegiatan belajar yang dilaksanakan hari ini:
+* ☑️ Tugas selesai (+3), dikerjakan mandiri (+3), tepat waktu (+3).
+* ☑️ Membaca materi hari ini (+3), persiapan materi besok (+5).
+* ☑️ Menyimak penjelasan guru (+3), tuntas sampai selesai (+3).
+* ☑️ Mencatat poin penting (+3), membuat rangkuman (+5).
+* ☑️ Mengikuti ekstrakurikuler belajar/literasi (+3 s.d. +5).
+
+#### 3. Pilar 3: Akhlak di Rumah & Bakti Orang Tua (Maks 15 Poin)
+Pilih bakti yang dilakukan di rumah (kegiatan ini akan dikonfirmasi oleh Orang Tua):
+* ☑️ Merapikan tempat tidur / barang pribadi (+3 Poin).
+* ☑️ Membersihkan rumah / menyapu / mengepel (+3 Poin).
+* ☑️ Membantu memasak / menyiapkan makanan (+3 Poin).
+* ☑️ Membantu orang tua bekerja / tugas rumah (+3 Poin).
+* ☑️ Merawat tanaman atau hewan peliharaan (+3 Poin).
+
+#### 4. Pilar 4: Pengembangan Diri & Istirahat Disiplin (Maks 13 Poin)
+* **Kegiatan Fisik/Ekskul**: Latihan ekskul terjadwal (+3) / kegiatan fisik tambahan (+4).
+* **Waktu Tidur Malam Disiplin**:
+  * Pukul 19.00 – 20.00 (+3 Poin)
+  * Pukul 20.00 – 21.00 (+2 Poin)
+  * Pukul 21.00 – 22.00 (+1 Poin)
+  * Lewat pukul 22.00 (-3 Poin)
+* **Waktu Bangun Pagi**:
+  * Pukul 03.00 – 04.00 (+3 Poin)
+  * Pukul 04.00 – 05.00 (+2 Poin)
+  * Pukul 05.00 – 06.00 (+1 Poin)
+  * Lewat pukul 06.00 (-3 Poin)
+
+#### 5. Melampirkan Foto Bukti (Opsional namun Dianjurkan)
+* Ketuk tombol **"📷 Ambil Foto"** atau **"🖼️ Pilih dari Galeri"** untuk melampirkan foto kegiatan (misalnya saat sholat berjamaah, belajar, atau membantu orang tua).
+* Foto otomatis dikompresi agar hemat kuota dan tersimpan aman di server.
 
 ---
 
-### C. Mengisi Jurnal Harian (5 Tahapan Form)
-Pengisian formulir dipandu dengan *progress bar* yang terbagi menjadi 5 bagian:
-
-#### 1. Tahap A: Sholat Fardhu 5 Waktu 🕌
-Untuk setiap waktu sholat (**Subuh**, **Dzuhur**, **Ashar**, **Maghrib**, **Isya**), santri memilih salah satu dari 4 pilihan tombol:
-- **Berjamaah**: Melaksanakan sholat secara berjamaah di masjid/musholla/rumah.
-- **Munfarid**: Melaksanakan sholat sendirian tepat waktu.
-- **Berhalangan**: Khusus santriwati yang berhalangan/uzur syar'i (haid).
-- **Tidak Sholat**: Jika meninggalkan sholat.
-
-#### 2. Tahap B: Waktu Tidur & Bangun ⏰
-Santri memilih rentang jam istirahat yang tersedia:
-- **Waktu Tidur Malam**:
-  - `19.00 – 20.00`
-  - `20.00 – 21.00`
-  - `21.00 – 22.00`
-  - `22.00 – tengah malam`
-- **Waktu Bangun Pagi**:
-  - `03.00 – 04.00`
-  - `04.00 – 05.00`
-  - `05.00 – 06.00`
-  - `06.00 – siang`
-
-#### 3. Tahap C: Makan Bergizi (Nutrisi) 🍽️
-Santri mencentang zat gizi yang dikonsumsi hari ini (bisa memilih lebih dari satu):
-- ☑️ **Karbohidrat** (Nasi, roti, kentang, jagung, dll).
-- ☑️ **Protein** (Ikan, ayam, telur, tempe, tahu, daging, dll).
-- ☑️ **Vitamin** (Sayur-mayur dan buah-buahan).
-
-#### 4. Tahap D: Kegiatan Bersama Orang Tua 👨‍👩‍👧‍👦
-Santri memilih kegiatan berbakti / membantu orang tua di rumah (bisa memilih lebih dari satu):
-- ☑️ Membersihkan kamar/ruang tamu/dapur
-- ☑️ Membersihkan halaman dan ruangan lain
-- ☑️ Mencuci piring / mencuci baju / mencuci kendaraan dan lain-lain
-- ☑️ Memasak / belanja / menyiapkan makanan dan lain-lain
-- ☑️ Menjaga adik / keluarga dan lain-lain
-- ☑️ Berkebun / merawat hewan peliharaan dan lain-lain
-- ☑️ Membantu orang tua bekerja dan lain-lain
-- ☑️ **Lainnya** *(jika dicentang, akan muncul kolom teks untuk mengetik kegiatan sendiri)*.
-
-#### 5. Tahap E: Aktivitas Belajar 📖
-Santri memilih aktivitas belajar yang dilakukan hari ini (bisa memilih lebih dari satu):
-- ☑️ Mengerjakan tugas/PR
-- ☑️ Membaca materi pelajaran
-- ☑️ Menyimak materi pelajaran (video pembelajaran)
-- ☑️ Menulis/mencatat materi
-- ☑️ Ekstrakurikuler sekolah
-- ☑️ **Kegiatan non akademik lainnya** *(jika dicentang, akan muncul kolom teks untuk mengetik kegiatan sendiri)*.
-
----
-
-### D. Fitur "Lengkapi Hari Terlewat" (Backfill)
-Jika santri lupa mengisi jurnal pada hari-hari sebelumnya:
-1. Di dashboard siswa, ketuk banner / tombol **"Lengkapi Hari Terlewat"**.
-2. Aplikasi akan membuka layar khusus yang menampilkan **daftar tanggal-tanggal yang terlewat**.
-3. Ketuk tanggal yang ingin dilengkapi, isi formulir 5 tahap, lalu simpan.
-4. Laporan akan tersimpan dengan tanda *"Diisi Terlambat (Backfill)"*.
-
----
-
-### E. Memperbarui Data (Edit Data)
-Jika ada kekeliruan data yang sudah disimpan pada hari yang sama:
-- Cukup buka kembali formulir hari tersebut (tombol *"Ubah Kegiatan Hari Ini"*), perbaiki pilihan, lalu kirim ulang. Sistem otomatis memperbarui data lama tanpa membuat data ganda (*anti-duplicate*).
+### B. Tab Apresiasi (Lencana Karakter)
+Santri dapat melihat lencana kehormatan yang berhasil dikumpulkan:
+* 🚀 **Langkah Perdana**: Mengisi jurnal untuk pertama kali.
+* 🌅 **Pejuang Subuh**: Melaksanakan sholat Subuh berjamaah 7 hari berturut-turut.
+* 💖 **Anak Berbakti**: Aktif membantu orang tua minimal 7 hari.
+* 📚 **Penuntut Ilmu**: Disiplin belajar mandiri minimal 7 hari.
+* 🌙 **Disiplin Istirahat**: Tidur dan bangun pagi tepat waktu minimal 5 hari.
+* 🏆 **Santri Teladan**: Konsisten mengisi jurnal selama 30 hari.
 
 ---
 
 ## 5. Panduan Pengguna: GURU WALI (Wali Kelas)
 
-### A. Cara Login Guru Wali
-1. Pilih tab **"Guru Wali"**.
-2. Masukkan **Nama Lengkap Guru** (bisa mengetik nama biasa atau format `nama_lengkap`, contoh: `catur_anjar_anggraini`).
-3. Masukkan kata sandi (default: `password123`).
-4. Klik **Masuk**.
+Aplikasi Guru Wali memiliki **4 Tab Menu Utama**:
+- 👥 **Siswa**: Daftar pantauan santri per kelas, status pengisian, dan pencarian.
+- 📊 **Analisis**: Statistik rata-rata karakter kelas, grafik kepatuhan sholat, dan ranking konsistensi.
+- 📢 **Pengumuman**: Menyiarkan pesan dan pengumuman resmi ke seluruh santri dan orang tua di kelasnya.
+- 👤 **Akun**: Profil guru, ganti kata sandi mandiri, dan tombol keluar.
 
 ---
 
-### B. Dashboard Monitoring Kelas
-Dashboard Guru Wali menyajikan rekap monitoring seluruh siswa binaan:
-- **Header**: Nama Guru Wali dan tombol **"+ Siswa"** (untuk menambah santri baru).
-- **Kartu KPI Kelas**:
-  - Total jumlah siswa binaan.
-  - Jumlah siswa yang **Sudah Mengisi** jurnal hari ini.
-  - Jumlah siswa yang **Belum Mengisi** jurnal hari ini.
-  - Rata-rata persentase kepatuhan sholat berjamaah kelas.
-- **Filter Cepat**:
-  - Tombol filter status: **Semua**, **Sudah**, dan **Belum**.
-- **Pencarian Siswa**:
-  - Kolom pencarian untuk mencari nama atau NIPD santri secara langsung.
+### A. Dashboard Pemantauan Kelas & Detail Siswa
+1. Di tab **Siswa**, guru dapat melihat:
+   * Total santri binaan, jumlah yang sudah mengisi hari ini, dan yang belum mengisi.
+   * Rata-rata skor karakter kelas hari ini.
+   * Jumlah jurnal yang telah disetujui orang tua.
+2. **Membuka Detail Siswa**:
+   * Ketuk kartu santri untuk membuka rincian lengkap:
+     * Skor karakter hari ini (dengan perincian Ibadah, Belajar, Akhlak, Pengembangan Diri).
+     * Foto bukti yang diunggah santri.
+     * Status verifikasi orang tua beserta catatan motivasi dari rumah.
 
 ---
 
-### C. Melihat Rekap & Log Individual Siswa
-Ketuk kartu nama santri pada daftar untuk membuka rincian lengkap:
-1. **Profil Siswa**: Nama lengkap, NIPD, dan kelas.
-2. **Kartu Rekapitulasi Kepatuhan**:
-   - Persentase sholat berjamaah selama **7 Hari** terakhir.
-   - Persentase sholat berjamaah selama **30 Hari** terakhir.
-3. **Rincian Jurnal Tanggal Terpilih**:
-   - Status waktu pengisian (dan label *"Terlambat mengisi"* jika backfill).
-   - Rincian status sholat Subuh, Dzuhur, Ashar, Maghrib, Isya.
-   - Jam tidur malam dan jam bangun pagi.
-   - Pilihan nutrisi yang dikonsumsi.
-   - Kegiatan bersama orang tua (beserta catatan khusus jika ada).
-   - Aktivitas belajar (beserta catatan khusus jika ada).
+### B. Catatan Pendampingan & Bimbingan (Mentoring)
+Guru Wali dapat memberikan pendampingan khusus bagi santri yang membutuhkan perhatian:
+1. Buka halaman detail santri yang bersangkutan.
+2. Di bagian **"Catatan Pendampingan Guru"**, ketuk tombol **"+ Tambah Catatan"**.
+3. Pilih kategori: `Pujian/Apresiasi`, `Bimbingan Ibadah`, `Kedisiplinan`, atau `Tindak Lanjut`.
+4. Tulis catatan bimbingan, lalu simpan. Catatan ini tersimpan rapi sebagai rekam jejak pembinaan santri.
 
 ---
 
-### D. Menambahkan Siswa Baru
-Guru Wali dapat mendaftarkan siswa baru ke kelas binaannya:
-1. Klik tombol **"+ Siswa"** di pojok kanan atas dashboard.
-2. Isi formulir pendaftaran:
-   - **Nama Lengkap**: Nama lengkap siswa baru (contoh: *Budi Setiawan*).
-   - **NIPD**: Nomor Induk Siswa (wajib unik).
-   - **Kelas**: Pilih chip kelas yang sesuai (`7A`, `7B`, `7C`, `7D`, `8A`, `8B`, `8C`, `8D`, `8E`).
-3. Klik **Simpan**.
-4. **Sistem Otomatis**:
-   - Akun Siswa langsung aktif (Login: NIPD).
-   - Akun Wali Murid otomatis dibuatkan (Login: Nama Lengkap Siswa).
-   - Password kedua akun otomatis diset ke `password123`.
+### C. Analisis Karakter & Ekspor Laporan Excel/CSV
+1. Buka tab **Analisis** (📊).
+2. Pilih rentang waktu: **7 Hari**, **14 Hari**, atau **30 Hari**.
+3. Sistem menyajikan:
+   * Nilai rata-rata kelas per pilar karakter.
+   * Persentase kepatuhan sholat Subuh dan Sholat 5 Waktu berjamaah.
+   * Ranking konsistensi santri.
+4. **Unduh Rekap Excel/CSV**:
+   * Ketuk tombol **"📥 Ekspor"** di pojok kanan filter.
+   * Laporan rekapitulasi karakter satu kelas langsung terunduh dalam format CSV berstandar Excel (lengkap dengan NIPD, nama, skor per kategori, persentase sholat, dan predikat).
+
+---
+
+### D. Siaran Pengumuman Kelas
+1. Buka tab **Pengumuman** (📢).
+2. Ketuk **"+ Buat Pengumuman"**.
+3. Tulis judul, isi pengumuman, dan tingkat prioritas (`Normal` / `Penting`).
+4. Pengumuman otomatis muncul di beranda seluruh santri dan wali murid di kelas tersebut.
 
 ---
 
 ## 6. Panduan Pengguna: WALI MURID (Orang Tua)
 
-### A. Cara Login Wali Murid
-1. Pilih tab **"Wali Murid"**.
-2. Masukkan **Nama Lengkap Anak Anda** (bisa mengetik biasa atau format `nama_lengkap`, contoh: `afika_putri_rievylia`).
-3. Masukkan kata sandi (default: `password123`).
-4. Klik **Masuk**.
+Aplikasi Wali Murid dirancang agar orang tua dapat aktif mendampingi pembiasaan anak di rumah dengan **5 Tab Menu Navigasi**:
+- 🏠 **Beranda**: Ringkasan skor karakter anak hari ini, pengumuman kelas, dan status verifikasi.
+- ✅ **Konfirmasi**: Menyetujui kebenaran aktivitas bakti di rumah dan foto bukti anak.
+- 💌 **Motivasi**: Menulis pesan semangat harian yang akan dibaca anak di berandanya.
+- 📈 **Perkembangan**: Grafik skor dan kepatuhan ibadah anak dalam 7, 14, dan 30 hari.
+- 👤 **Akun**: Profil wali murid, ganti kata sandi mandiri, dan tombol keluar.
 
 ---
 
-### B. Dashboard Orang Tua
-Orang tua mendapatkan akses khusus yang terisolasi aman (**hanya dapat memantau data anaknya sendiri**):
-- **Kartu Identitas Anak**: Menampilkan nama anak, kelas, NIPD, serta nama Guru Wali kelasnya.
-- **Status Pengisian Hari Ini**:
-  - Kotak hijau: *"Sudah mengisi kegiatan hari ini"* (disertai jam pengisian).
-  - Kotak kuning: *"Belum mengisi kegiatan hari ini"*.
-- **Rincian Sholat & Istirahat Hari Ini**:
-  - Status setiap waktu sholat (Subuh, Dzuhur, Ashar, Maghrib, Isya).
-  - Jam tidur malam dan bangun pagi anak.
-- **Grafik Kepatuhan Sholat Berjamaah**:
-  - Persentase sholat berjamaah anak selama **7 Hari** terakhir.
-  - Persentase sholat berjamaah anak selama **30 Hari** terakhir.
+### A. Memverifikasi Jurnal Anak (Konfirmasi Akhlak)
+1. Buka tab **Konfirmasi** (✅).
+2. Layar akan menampilkan laporan jurnal anak yang menunggu konfirmasi orang tua.
+3. Orang tua dapat melihat:
+   * Daftar kegiatan bakti yang dicentang anak di rumah.
+   * Foto bukti yang dilampirkan anak.
+4. Tulis catatan singkat (misalnya: *"Alhamdulillah rajin membantu ibu"*).
+5. Ketuk **"Setujui & Konfirmasi"** (atau *"Tolak"* jika kegiatan belum sesuai).
 
 ---
 
-## 7. Tanya Jawab (FAQ) & Penyelesaian Masalah
-
-### Q1: Apakah aplikasi ini membutuhkan koneksi internet?
-**Jawab**: Ya. Data disinkronkan langsung secara online ke sistem sekolah, sehingga HP membutuhkan koneksi internet (kuota data seluler atau Wi-Fi).
-
----
-
-### Q2: Mengapa muncul peringatan "Play Protect" saat install APK?
-**Jawab**: Peringatan ini normal karena aplikasi di-compile langsung untuk internal SMP Negeri 2 Panji dan tidak didistribusikan lewat Google Play Store publik. Cukup klik **"Detail selengkapnya"** ➡️ **"Tetap instal (Install anyway)"**.
+### B. Mengirimkan Pesan Motivasi Harian
+1. Buka tab **Motivasi** (💌).
+2. Tulis pesan doa, nasihat, atau kata-kata penyemangat untuk anak.
+3. Ketuk **"Kirim Pesan"**. Pesan ini langsung tampil di kartu Beranda aplikasi anak Anda.
 
 ---
 
-### Q3: Bagaimana jika santriwati sedang berhalangan / haid?
-**Jawab**: Pada Tahap A (Sholat), pilih opsi **"Berhalangan"**. Sistem mencatat jurnal tetap terisi tanpa mengurangi nilai kepatuhan karena faktor uzur syar'i.
+## 7. Panduan Pengguna: ADMIN SEKOLAH
+
+Panel Admin adalah pusat kendali master data seluruh sekolah:
+
+### A. Manajemen Siswa, Guru & Rombongan Belajar (Strict Admin Only)
+* **Dukungan Penuh 15 Rombel Kelas**:
+  Sistem mendukung seluruh rombel SMP Negeri 2 Panji:
+  * **Kelas 7**: 7A, 7B, 7C, 7D, 7E
+  * **Kelas 8**: 8A, 8B, 8C, 8D, 8E
+  * **Kelas 9**: 9A, 9B, 9C, 9D, 9E
+* **Menambah Santri Baru (Bebas Typo Guru Wali)**:
+  1. Di dashboard Admin [index.tsx](file:///d:/SI-SANTRI/frontend/app/(admin)/index.tsx), ketuk **"+ Siswa"**.
+  2. Masukkan Nama Lengkap dan NIPD unik.
+  3. Pilih Rombel/Kelas (dikelompokkan rapi per jenjang: Kelas 7, 8, atau 9).
+  4. **Pilih Guru Wali**: Pilih guru pembina langsung dari daftar guru resmi sekolah (cukup klik nama guru, tanpa mengetik manual sehingga 100% bebas salah ketik/typo).
+  5. Ketuk **Simpan Siswa**. Sistem otomatis membuatkan akun Siswa (login NIPD) dan akun Wali Murid sekaligus dengan password default (`password123`).
+* **Menambah Guru Baru (`+ Guru`)**:
+  1. Ketuk tombol **"+ Guru"** di header atas.
+  2. Masukkan Nama Lengkap Guru (misal: *Dra. Hj. Siti Aminah, M.Pd*).
+  3. Username otomatis dibuat dari nama (atau dapat disesuaikan manual).
+  4. Ketuk **Simpan Guru**. Akun guru langsung aktif dan siap digunakan (password default: `password123`).
+* **Melihat Daftar Guru & Reset Kata Sandi Guru**:
+  * Ketuk kartu KPI **"Total Guru 👁️"** di beranda admin untuk membuka daftar seluruh guru terdaftar, jumlah santri yang dibina, serta tombol cepat **"🔑 Reset"** kata sandi guru jika guru lupa password.
+* **Mereset Kata Sandi Siswa / Wali**:
+  * Cari nama santri pada daftar ➡️ ketuk tombol **"🔑 Reset"** ➡️ kata sandi dapat dikembalikan ke `password123`.
+* **Mengunduh Rekap Seluruh Sekolah**:
+  * Ketuk tombol **"📥 Ekspor"** di header atas untuk mengunduh rekapitulasi nilai karakter seluruh santri di sekolah dalam format Excel/CSV (dapat difilter per kelas atau semua kelas).
 
 ---
 
-### Q4: Apakah data yang sudah terisi bisa diperbaiki jika salah pilih?
-**Jawab**: Bisa. Buka kembali form pada hari tersebut, ubah pilihan yang keliru, lalu simpan ulang. Sistem otomatis memperbarui data yang ada.
+## 8. Sistem Kata Sandi & Pemulihan Darurat
+
+Untuk menjamin keamanan dan kenyamanan penggunaan:
+
+### A. Ubah Kata Sandi Mandiri (Semua Peran)
+Setiap pengguna (Siswa, Guru, Orang Tua, dan Admin) dapat mengganti kata sandi kapan saja:
+1. Masuk ke tab **Akun** (👤).
+2. Ketuk tombol **"🔑 Ubah Password"**.
+3. Masukkan password lama, password baru, dan konfirmasi password baru.
+4. Ketuk **Simpan**.
+*(Khusus akun Admin, kata sandi diwajibkan minimal 8 karakter demi keamanan sekolah).*
+
+### B. Peringatan Keamanan Akun Admin
+Jika Admin masih menggunakan kata sandi default (`admin123`), dashboard Admin akan menampilkan kotak peringatan merah agar segera mengganti kata sandi.
+
+### C. Pemulihan Darurat Jika Admin Lupa Password (*Emergency CLI*)
+Jika Admin sekolah lupa kata sandi akunnya sendiri, pengelola IT server dapat meresetnya dalam 5 detik melalui terminal backend:
+```bash
+cd backend
+python reset_admin_password.py --username admin --password "PasswordBaruAnda"
+```
+atau secara interaktif dengan menjalankan `python reset_admin_password.py`.
 
 ---
 
-### Q5: Bagaimana jika lupa kata sandi (*Password*)?
-**Jawab**: Kata sandi awal seluruh akun adalah **`password123`**. Jika santri atau wali murid mengalami kendala masuk, silakan menghubungi **Guru Wali Kelas** masing-masing.
+## 9. Tanya Jawab (FAQ) & Penyelesaian Masalah
+
+### Q1: Apakah aplikasi ini membutuhkan kuota internet?
+**Jawab**: Ya. Data tersinkronisasi online ke server sekolah secara *real-time*. Namun, pengiriman data teks sangat ringan, dan foto otomatis dikompresi sehingga sangat hemat kuota.
+
+---
+
+### Q2: Bagaimana jika santriwati sedang berhalangan sholat (haid)?
+**Jawab**: Pada Kategori Ibadah, pilih opsi **"Berhalangan"**. Sistem mencatat jurnal tetap terisi dan tidak mengurangi skor karena faktor uzur syar'i.
+
+---
+
+### Q3: Apakah santri bisa memperbaiki data jika salah pilih?
+**Jawab**: Bisa. Buka kembali form pada hari tersebut, lakukan perbaikan, lalu simpan ulang. Sistem otomatis memperbarui data (*anti-duplicate*).
+
+---
+
+### Q4: Mengapa Guru Wali tidak bisa menambah siswa lagi?
+**Jawab**: Mulai versi 2, seluruh penambahan santri dipusatkan ke **Admin Sekolah / Tata Usaha** agar sinkron dengan data resmi Dapodik sekolah.
+
+---
+
+### Q5: Bagaimana jika Siswa, Guru, atau Wali Murid lupa password?
+**Jawab**: Hubungi **Admin Sekolah (Tata Usaha)**. Admin dapat mereset kata sandi akun Anda dalam 5 detik melalui tombol *Reset* di Panel Admin.
+
+---
+
+### Q6: Bagaimana jika Admin Sekolah sendiri yang lupa password?
+**Jawab**: Pengelola server IT dapat menjalankan skrip pemulihan darurat `python reset_admin_password.py` langsung di server tanpa mengganggu database sekolah.
 
 ---
 
 <br>
 
-**SI-SANTRI — SMP NEGERI 2 PANJI**  
-*Membangun Karakter Santri Disiplin, Jujur, dan Berakhlakul Karimah.*
+**SI-SANTRI v2 — SMP NEGERI 2 PANJI, SITUBONDO**  
+*Membangun Generasi Santri Berkarakter, Disiplin, dan Berakhlakul Karimah.*

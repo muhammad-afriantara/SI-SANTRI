@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from "react-native";
 import { router } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,6 +21,7 @@ const ROLE_TABS: { key: Role; label: string }[] = [
   { key: "siswa", label: "Siswa" },
   { key: "guru", label: "Guru Wali" },
   { key: "wali_murid", label: "Wali Murid" },
+  { key: "admin", label: "Admin" },
 ];
 
 const ROLE_CONFIG: Record<Role, { label: string; placeholder: string; helper?: string }> = {
@@ -36,6 +38,10 @@ const ROLE_CONFIG: Record<Role, { label: string; placeholder: string; helper?: s
     label: "Nama Lengkap Siswa (format: nama_lengkap)",
     placeholder: "contoh: afika_putri_rievylia",
     helper: "Ketik nama lengkap anak Anda.",
+  },
+  admin: {
+    label: "Username Admin Sekolah",
+    placeholder: "Masukkan username (contoh: admin)",
   },
 };
 
@@ -67,7 +73,9 @@ export default function LoginScreen() {
       await login(role, identifier.trim(), password.trim());
       if (role === "siswa") router.replace("/(student)");
       else if (role === "guru") router.replace("/(teacher)");
-      else router.replace("/(parent)");
+      else if (role === "wali_murid") router.replace("/(parent)");
+      else router.replace("/(admin)" as any);
+
     } catch (e) {
       const message = e instanceof ApiError ? e.message : "Gagal terhubung ke server.";
       setError(message);
@@ -75,6 +83,7 @@ export default function LoginScreen() {
       setLoading(false);
     }
   };
+
 
   return (
     <KeyboardAvoidingView
@@ -86,9 +95,11 @@ export default function LoginScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.header}>
-          <View style={styles.logoCircle}>
-            <Text style={styles.logoText}>SS</Text>
-          </View>
+          <Image
+            source={require("../assets/images/icon.png")}
+            style={styles.logoImage}
+            resizeMode="contain"
+          />
           <Text style={styles.title} testID="login-app-title">SI SANTRI</Text>
           <Text style={styles.subtitle}>
             Sistem Pengawasan Tingkah Laku Sehari-hari{"\n"}SMP Negeri 2 Panji
@@ -176,19 +187,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: spacing.xl,
   },
-  logoCircle: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: colors.brandPrimary,
-    alignItems: "center",
-    justifyContent: "center",
+  logoImage: {
+    width: 84,
+    height: 84,
+    borderRadius: 20,
     marginBottom: spacing.md,
-  },
-  logoText: {
-    color: "#FFFFFF",
-    fontSize: 22,
-    fontWeight: "800",
   },
   title: {
     ...typography.display,

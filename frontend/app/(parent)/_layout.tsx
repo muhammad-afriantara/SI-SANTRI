@@ -35,24 +35,40 @@ export default function ParentTabsLayout() {
         options={{
           title: "Beranda",
           tabBarTestID: "parent-tab-home",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="🏠" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="🏠" focused={focused} />,
+        } as any}
+      />
+      <Tabs.Screen
+        name="confirmations"
+        options={{
+          title: "Konfirmasi",
+          tabBarTestID: "parent-tab-confirmations",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="✅" focused={focused} />,
+        } as any}
+      />
+      <Tabs.Screen
+        name="notes"
+        options={{
+          title: "Motivasi",
+          tabBarTestID: "parent-tab-notes",
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="💌" focused={focused} />,
+        } as any}
       />
       <Tabs.Screen
         name="history"
         options={{
-          title: "Riwayat",
+          title: "Perkembangan",
           tabBarTestID: "parent-tab-history",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="🗂️" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="📈" focused={focused} />,
+        } as any}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: "Akun",
           tabBarTestID: "parent-tab-account",
-          tabBarIcon: ({ focused }) => <TabIcon symbol="👤" focused={focused} />,
-        }}
+          tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon symbol="👤" focused={focused} />,
+        } as any}
       />
     </Tabs>
   );

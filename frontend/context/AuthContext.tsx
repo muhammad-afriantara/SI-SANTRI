@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState, useCallback } fr
 import { storage } from "@/src/utils/storage";
 import { apiRequest, ApiError } from "../utils/api";
 
-export type Role = "siswa" | "guru" | "wali_murid";
+export type Role = "siswa" | "guru" | "wali_murid" | "admin";
 
 type AuthState = {
   token: string | null;
