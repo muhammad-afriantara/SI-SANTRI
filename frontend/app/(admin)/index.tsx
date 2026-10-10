@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef, useMemo } from "react";
 import {
   View,
   Text,
@@ -55,10 +55,13 @@ export default function AdminDashboard() {
   const [newTeacherId, setNewTeacherId] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  // Modal Pemilih Guru Wali (Dropdown / Selector khusus)
+  const [teacherPickerModalVisible, setTeacherPickerModalVisible] = useState(false);
+  const [teacherSearch, setTeacherSearch] = useState("");
+
   // Modal Tambah Guru
   const [addTeacherModalVisible, setAddTeacherModalVisible] = useState(false);
   const [newTeacherName, setNewTeacherName] = useState("");
-  const [newTeacherUsername, setNewTeacherUsername] = useState("");
   const [submittingTeacher, setSubmittingTeacher] = useState(false);
 
   // Modal Daftar Guru
@@ -69,6 +72,71 @@ export default function AdminDashboard() {
   const [selectedUserForReset, setSelectedUserForReset] = useState<any>(null);
   const [newPassInput, setNewPassInput] = useState("");
   const [resetting, setResetting] = useState(false);
+
+  // Otomatis buat username dari nama guru untuk preview
+  const autoTeacherUsername = useMemo(() => {
+    if (!newTeacherName.trim()) return "";
+    return newTeacherName
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, "")
+      .replace(/\s+/g, "_")
+      .slice(0, 30);
+  }, [newTeacherName]);
+
+  const toTitleCase = (str: string) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word) => {
+        if (!word) return "";
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(" ");
+  };
+
+  const validateTeacherFormat = (name: string): string | null => {
+    const trimmed = name.trim();
+    if (!trimmed) return "Nama lengkap guru wajib diisi.";
+    if (trimmed.length < 3) return "Nama guru minimal 3 karakter.";
+    if (trimmed.length > 60) return "Nama guru maksimal 60 karakter.";
+    if (/\d/.test(trimmed)) return "Nama guru tidak boleh mengandung angka.";
+    if (!/^[a-zA-Z\s',.\-]+$/.test(trimmed)) {
+      return "Nama guru hanya boleh memuat huruf, spasi, titik, koma gelar, dan tanda hubung.";
+    }
+    const words = trimmed.replace(/[,.]/g, " ").split(/\s+/).filter(Boolean);
+    const hasLower = words.some(
+      (w) => w[0] === w[0].toLowerCase() && !["dan", "bin", "binti"].includes(w.toLowerCase())
+    );
+    if (hasLower) {
+      return "Format tidak sesuai: Awali setiap kata dengan huruf kapital (Title Case), contoh: Sintia Widiyawati atau Siti Aminah, S.Pd.";
+    }
+    return null;
+  };
+
+  const validateStudentFormat = (name: string, nipd: string): string | null => {
+    const trimmedName = name.trim();
+    const trimmedNipd = nipd.trim();
+
+    if (!trimmedName) return "Nama lengkap siswa wajib diisi.";
+    if (trimmedName.length < 3) return "Nama siswa minimal 3 karakter.";
+    if (trimmedName.length > 60) return "Nama siswa maksimal 60 karakter.";
+    if (/\d/.test(trimmedName)) return "Nama siswa tidak boleh mengandung angka.";
+    if (!/^[a-zA-Z\s'\.\-]+$/.test(trimmedName)) {
+      return "Nama siswa hanya boleh memuat huruf, spasi, tanda petik ('), dan tanda hubung (-).";
+    }
+    const words = trimmedName.split(/\s+/).filter(Boolean);
+    if (words.some((w) => w[0] === w[0].toLowerCase())) {
+      return "Format nama siswa harus diawali huruf kapital pada tiap kata (Title Case), contoh: Ahmad Adila Riskiyansyah.";
+    }
+
+    if (!trimmedNipd) return "NIPD siswa wajib diisi.";
+    if (!/^\d{4,10}$/.test(trimmedNipd)) {
+      return "Format NIPD tidak valid. NIPD harus berupa 4 sampai 10 digit angka tanpa huruf atau spasi (contoh: 8308).";
+    }
+
+    return null;
+  };
 
   const handleExport = async () => {
     setDownloading(true);
@@ -167,8 +235,13 @@ export default function AdminDashboard() {
   };
 
   const handleAddStudent = async () => {
-    if (!newName.trim() || !newNipd.trim() || !newClassId) {
-      show("Mohon lengkapi nama, NIPD, dan kelas.", "error");
+    const errorMsg = validateStudentFormat(newName, newNipd);
+    if (errorMsg) {
+      show(errorMsg, "error");
+      return;
+    }
+    if (!newClassId) {
+      show("Mohon pilih salah satu rombel kelas.", "error");
       return;
     }
     setSubmitting(true);
@@ -202,8 +275,9 @@ export default function AdminDashboard() {
   };
 
   const handleAddTeacher = async () => {
-    if (!newTeacherName.trim()) {
-      show("Mohon masukkan nama lengkap guru.", "error");
+    const errorMsg = validateTeacherFormat(newTeacherName);
+    if (errorMsg) {
+      show(errorMsg, "error");
       return;
     }
     setSubmittingTeacher(true);
@@ -213,13 +287,11 @@ export default function AdminDashboard() {
         token,
         body: {
           name: newTeacherName.trim(),
-          username: newTeacherUsername.trim() || undefined,
         },
       });
-      show(`Guru ${res.name} (Username: ${res.username}) berhasil ditambahkan!`, "success");
+      show(`Guru ${res.name} (Username: @${res.username}) berhasil ditambahkan!`, "success");
       setAddTeacherModalVisible(false);
       setNewTeacherName("");
-      setNewTeacherUsername("");
       loadAll();
     } catch (e) {
       const msg = e instanceof ApiError ? e.message : "Gagal menambahkan guru";
@@ -263,18 +335,11 @@ export default function AdminDashboard() {
     <View style={{ flex: 1, backgroundColor: colors.surface }}>
       {/* Header Bar */}
       <View style={[styles.headerBar, { paddingTop: insets.top + spacing.md }]}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, paddingRight: spacing.sm }}>
           <Text style={styles.headerTitle} testID="admin-dashboard-title">Panel Admin Sekolah</Text>
           <Text style={styles.headerSubtitle}>SMP NEGERI 2 PANJI</Text>
         </View>
         <View style={{ flexDirection: "row", gap: spacing.xs, alignItems: "center" }}>
-          <TouchableOpacity
-            style={styles.exportHeaderBtn}
-            onPress={handleExport}
-            disabled={downloading}
-          >
-            <Text style={styles.exportHeaderBtnText}>{downloading ? "⏳" : "📥 Ekspor"}</Text>
-          </TouchableOpacity>
           <TouchableOpacity
             testID="admin-add-teacher-btn"
             style={styles.addTeacherBtn}
@@ -334,6 +399,31 @@ export default function AdminDashboard() {
                 <Text style={styles.kpiLabel}>Belum Isi</Text>
               </View>
             </View>
+
+            {/* Tombol Ekspor Rekap Sekolah (Dibuat di bawah KPI agar Header Luas & Nyaman) */}
+            <TouchableOpacity
+              style={styles.exportActionCard}
+              onPress={handleExport}
+              disabled={downloading}
+              activeOpacity={0.8}
+            >
+              <View style={styles.exportActionLeft}>
+                <View style={styles.exportIconBox}>
+                  <Text style={styles.exportIconText}>{downloading ? "⏳" : "📥"}</Text>
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.exportActionTitle}>
+                    {downloading ? "Sedang Menyiapkan CSV..." : "Ekspor Rekap Karakter Santri (CSV)"}
+                  </Text>
+                  <Text style={styles.exportActionSub}>
+                    Unduh rekap nilai 15 rombel langsung ke folder Unduhan HP
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.exportActionBadge}>
+                <Text style={styles.exportActionBadgeText}>{downloading ? "Proses..." : "Unduh CSV"}</Text>
+              </View>
+            </TouchableOpacity>
 
             {/* Filter Kelas */}
             <Text style={styles.sectionHeader}>Filter Rombongan Belajar (15 Kelas)</Text>
@@ -401,28 +491,43 @@ export default function AdminDashboard() {
       <Modal visible={addModalVisible} transparent animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={[styles.modalContent, { maxHeight: "90%" }]}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: spacing.lg }}>
               <Text style={styles.modalTitle}>Tambah Siswa Baru (Admin)</Text>
               <Text style={styles.modalSubtitle}>
                 Akun siswa (NIPD) dan akun wali murid akan otomatis dibuat dengan password default (password123).
               </Text>
 
-              <Text style={styles.inputLabel}>Nama Lengkap Siswa</Text>
+              {/* Input Nama Siswa */}
+              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                <Text style={styles.inputLabel}>Nama Lengkap Siswa</Text>
+                {newName.trim().length > 0 && (
+                  <TouchableOpacity onPress={() => setNewName(toTitleCase(newName))}>
+                    <Text style={styles.formatQuickFixBtn}>✨ Rapikan Format</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
               <TextInput
                 style={styles.input}
                 value={newName}
                 onChangeText={setNewName}
-                placeholder="Contoh: Budi Santoso"
+                placeholder="Contoh: Ahmad Adila Riskiyansyah"
               />
+              <Text style={styles.fieldFormatGuide}>
+                💡 Format: Awali huruf kapital pada tiap kata (Title Case) tanpa angka atau simbol aneh. Contoh: Ahmad Adila Riskiyansyah.
+              </Text>
 
+              {/* Input NIPD */}
               <Text style={styles.inputLabel}>NIPD (Nomor Induk Siswa)</Text>
               <TextInput
                 style={styles.input}
                 value={newNipd}
-                onChangeText={setNewNipd}
-                placeholder="Contoh: 9005"
+                onChangeText={(text) => setNewNipd(text.replace(/[^0-9]/g, ""))}
+                placeholder="Contoh: 8308"
                 keyboardType="number-pad"
               />
+              <Text style={styles.fieldFormatGuide}>
+                💡 Format: 4 s/d 10 digit angka resmi buku induk sekolah (contoh: 8308 atau 8459).
+              </Text>
 
               {/* Pilihan Kelas Dikelompokkan */}
               <Text style={styles.inputLabel}>Pilih Kelas (Rombel)</Text>
@@ -460,52 +565,29 @@ export default function AdminDashboard() {
                 ))}
               </View>
 
-              {/* Pemilih Guru Wali (Anti Typo) */}
-              <Text style={styles.inputLabel}>Pilih Guru Wali (Bebas Typo)</Text>
-              <Text style={styles.inputHint}>
-                Pilih guru pembina siswa dari daftar akun guru resmi sekolah:
-              </Text>
-              <View style={styles.teacherPickerBox}>
-                <TouchableOpacity
-                  style={[
-                    styles.teacherPickItem,
-                    newTeacherId === "" && styles.teacherPickItemSelected,
-                  ]}
-                  onPress={() => setNewTeacherId("")}
-                >
-                  <Text
-                    style={[
-                      styles.teacherPickItemText,
-                      newTeacherId === "" && styles.teacherPickItemTextSelected,
-                    ]}
-                  >
-                    {newTeacherId === "" ? "✓ " : "• "}Otomatis (Sesuai Rombel / Belum Ditentukan)
+              {/* Pemilih Guru Wali (Dropdown Trigger Nyaman & Rapi) */}
+              <Text style={styles.inputLabel}>Pilih Guru Wali Kelas (Bebas Typo)</Text>
+              <TouchableOpacity
+                style={styles.teacherSelectTrigger}
+                onPress={() => {
+                  setTeacherSearch("");
+                  setTeacherPickerModalVisible(true);
+                }}
+              >
+                <View style={{ flex: 1, marginRight: spacing.sm }}>
+                  <Text style={styles.teacherSelectTriggerName}>
+                    {newTeacherId
+                      ? `👤 ${teachers.find((t) => t.teacher_id === newTeacherId)?.name || "Guru Terpilih"}`
+                      : "✓ Otomatis (Sesuai Rombel / Belum Ditentukan)"}
                   </Text>
-                </TouchableOpacity>
-
-                {teachers.map((t) => {
-                  const isSelected = newTeacherId === t.teacher_id;
-                  return (
-                    <TouchableOpacity
-                      key={t.teacher_id}
-                      style={[
-                        styles.teacherPickItem,
-                        isSelected && styles.teacherPickItemSelected,
-                      ]}
-                      onPress={() => setNewTeacherId(t.teacher_id)}
-                    >
-                      <Text
-                        style={[
-                          styles.teacherPickItemText,
-                          isSelected && styles.teacherPickItemTextSelected,
-                        ]}
-                      >
-                        {isSelected ? "✓ " : "• "}{t.name} ({t.username})
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
+                  <Text style={styles.teacherSelectTriggerHint}>
+                    {newTeacherId
+                      ? `Username: @${teachers.find((t) => t.teacher_id === newTeacherId)?.username}`
+                      : "Ketuk untuk memilih guru wali pembimbing resmi"}
+                  </Text>
+                </View>
+                <Text style={styles.teacherSelectArrow}>▼</Text>
+              </TouchableOpacity>
 
               <View style={styles.modalBtnRow}>
                 <PrimaryButton
@@ -529,6 +611,83 @@ export default function AdminDashboard() {
         </View>
       </Modal>
 
+      {/* Modal Khusus Pemilih Guru Wali (Dropdown Sheet) */}
+      <Modal visible={teacherPickerModalVisible} transparent animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { maxHeight: "80%" }]}>
+            <Text style={styles.modalTitle}>Pilih Guru Wali Pembina</Text>
+            <Text style={styles.modalSubtitle}>
+              Pilih guru dari daftar akun resmi SMP Negeri 2 Panji untuk menghindari salah ketik.
+            </Text>
+
+            <TextInput
+              style={styles.teacherSearchInput}
+              value={teacherSearch}
+              onChangeText={setTeacherSearch}
+              placeholder="🔍 Cari nama atau username guru..."
+              placeholderTextColor={colors.onSurfaceTertiary}
+            />
+
+            <ScrollView style={{ maxHeight: 320, marginVertical: spacing.sm }} showsVerticalScrollIndicator={true}>
+              <TouchableOpacity
+                style={[
+                  styles.teacherSelectItem,
+                  newTeacherId === "" && styles.teacherSelectItemActive,
+                ]}
+                onPress={() => {
+                  setNewTeacherId("");
+                  setTeacherPickerModalVisible(false);
+                }}
+              >
+                <Text style={[styles.teacherSelectItemName, newTeacherId === "" && styles.teacherSelectItemNameActive]}>
+                  {newTeacherId === "" ? "✓ " : ""}Otomatis (Sesuai Rombel / Belum Ditentukan)
+                </Text>
+                <Text style={styles.teacherSelectItemSub}>
+                  Guru pembina akan ditetapkan otomatis sesuai wali kelas rombel
+                </Text>
+              </TouchableOpacity>
+
+              {teachers
+                .filter((t) => {
+                  if (!teacherSearch.trim()) return true;
+                  const query = teacherSearch.toLowerCase();
+                  return t.name.toLowerCase().includes(query) || (t.username || "").toLowerCase().includes(query);
+                })
+                .map((t) => {
+                  const isSelected = newTeacherId === t.teacher_id;
+                  return (
+                    <TouchableOpacity
+                      key={t.teacher_id}
+                      style={[
+                        styles.teacherSelectItem,
+                        isSelected && styles.teacherSelectItemActive,
+                      ]}
+                      onPress={() => {
+                        setNewTeacherId(t.teacher_id);
+                        setTeacherPickerModalVisible(false);
+                      }}
+                    >
+                      <Text style={[styles.teacherSelectItemName, isSelected && styles.teacherSelectItemNameActive]}>
+                        {isSelected ? "✓ " : ""}👤 {t.name}
+                      </Text>
+                      <Text style={styles.teacherSelectItemSub}>
+                        Username login: @{t.username}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+            </ScrollView>
+
+            <PrimaryButton
+              title="Tutup Pilihan"
+              variant="secondary"
+              onPress={() => setTeacherPickerModalVisible(false)}
+              style={{ marginTop: spacing.sm }}
+            />
+          </View>
+        </View>
+      </Modal>
+
       {/* Modal Tambah Guru Baru */}
       <Modal visible={addTeacherModalVisible} transparent animationType="slide">
         <View style={styles.modalOverlay}>
@@ -538,22 +697,31 @@ export default function AdminDashboard() {
               Akun guru akan otomatis dibuat dengan password default sekolah (password123).
             </Text>
 
-            <Text style={styles.inputLabel}>Nama Lengkap Guru</Text>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+              <Text style={styles.inputLabel}>Nama Lengkap Guru</Text>
+              {newTeacherName.trim().length > 0 && (
+                <TouchableOpacity onPress={() => setNewTeacherName(toTitleCase(newTeacherName))}>
+                  <Text style={styles.formatQuickFixBtn}>✨ Rapikan Format</Text>
+                </TouchableOpacity>
+              )}
+            </View>
             <TextInput
               style={styles.input}
               value={newTeacherName}
               onChangeText={setNewTeacherName}
-              placeholder="Contoh: Dra. Hj. Siti Aminah, M.Pd"
+              placeholder="Contoh: Sintia Widiyawati, S.Pd"
             />
+            <Text style={styles.fieldFormatGuide}>
+              💡 Format: Awali huruf kapital pada tiap kata (Title Case). Boleh menyertakan gelar resmi. Contoh: Sintia Widiyawati atau Dra. Hj. Siti Aminah, M.Pd.
+            </Text>
 
-            <Text style={styles.inputLabel}>Username Login (Opsional)</Text>
-            <TextInput
-              style={styles.input}
-              value={newTeacherUsername}
-              onChangeText={setNewTeacherUsername}
-              placeholder="Contoh: siti_aminah (otomatis dari nama)"
-              autoCapitalize="none"
-            />
+            {/* Kotak Otomatis Username */}
+            <View style={styles.usernamePreviewBox}>
+              <Text style={styles.usernamePreviewLabel}>Username Login Guru (Otomatis):</Text>
+              <Text style={styles.usernamePreviewValue}>
+                {autoTeacherUsername ? `@${autoTeacherUsername}` : "(otomatis dibuat oleh sistem dari nama guru)"}
+              </Text>
+            </View>
 
             <View style={styles.defaultPassNotice}>
               <Text style={styles.defaultPassNoticeText}>
@@ -568,7 +736,6 @@ export default function AdminDashboard() {
                 onPress={() => {
                   setAddTeacherModalVisible(false);
                   setNewTeacherName("");
-                  setNewTeacherUsername("");
                 }}
                 style={{ flex: 1, marginRight: spacing.sm }}
               />
@@ -816,30 +983,150 @@ const styles = StyleSheet.create({
     ...typography.caption,
     color: "#166534",
   },
-  teacherPickerBox: {
-    maxHeight: 150,
+  exportActionCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#F0FDF4",
+    borderWidth: 1,
+    borderColor: "#BBF7D0",
+    borderRadius: radii.card,
+    padding: spacing.md,
+    marginBottom: spacing.base,
+  },
+  exportActionLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+    flex: 1,
+    marginRight: spacing.sm,
+  },
+  exportIconBox: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: "#DCFCE7",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  exportIconText: { fontSize: 18 },
+  exportActionTitle: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#166534",
+  },
+  exportActionSub: {
+    fontSize: 11,
+    color: "#15803D",
+    marginTop: 2,
+  },
+  exportActionBadge: {
+    backgroundColor: colors.brandPrimary,
+    paddingHorizontal: spacing.sm + 4,
+    paddingVertical: 6,
+    borderRadius: radii.button,
+  },
+  exportActionBadgeText: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "700",
+  },
+  teacherSelectTrigger: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.surface,
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    borderRadius: radii.button,
+    paddingHorizontal: spacing.base,
+    paddingVertical: spacing.sm + 2,
+    marginTop: 4,
+    marginBottom: spacing.sm,
+  },
+  teacherSelectTriggerName: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: colors.onSurface,
+  },
+  teacherSelectTriggerHint: {
+    fontSize: 11,
+    color: colors.onSurfaceTertiary,
+    marginTop: 2,
+  },
+  teacherSelectArrow: {
+    fontSize: 14,
+    color: colors.onSurfaceSecondary,
+    marginLeft: spacing.sm,
+  },
+  teacherSearchInput: {
+    backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: radii.button,
-    padding: spacing.xs,
-    backgroundColor: colors.surface,
+    paddingHorizontal: spacing.base,
+    paddingVertical: spacing.sm,
+    fontSize: 14,
+    color: colors.onSurface,
+    marginTop: spacing.xs,
   },
-  teacherPickItem: {
-    paddingVertical: spacing.xs + 2,
-    paddingHorizontal: spacing.sm,
+  teacherSelectItem: {
+    padding: spacing.sm + 2,
     borderRadius: radii.button,
-    marginBottom: 2,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginBottom: 6,
   },
-  teacherPickItemSelected: {
-    backgroundColor: colors.brandTertiary,
+  teacherSelectItemActive: {
+    backgroundColor: "#ECFDF5",
+    borderColor: colors.brandPrimary,
   },
-  teacherPickItemText: {
-    ...typography.caption,
+  teacherSelectItemName: {
+    fontSize: 13,
+    fontWeight: "700",
     color: colors.onSurface,
   },
-  teacherPickItemTextSelected: {
+  teacherSelectItemNameActive: {
     color: colors.brandPrimary,
+  },
+  teacherSelectItemSub: {
+    fontSize: 11,
+    color: colors.onSurfaceTertiary,
+    marginTop: 2,
+  },
+  fieldFormatGuide: {
+    fontSize: 11,
+    color: "#047857",
+    backgroundColor: "#F0FDF4",
+    padding: 6,
+    borderRadius: 6,
+    marginTop: 4,
+    marginBottom: spacing.xs,
+  },
+  formatQuickFixBtn: {
+    fontSize: 11,
     fontWeight: "700",
+    color: colors.brandPrimary,
+  },
+  usernamePreviewBox: {
+    backgroundColor: "#F8FAFC",
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    borderRadius: radii.button,
+    padding: spacing.sm,
+    marginTop: spacing.sm,
+    marginBottom: spacing.xs,
+  },
+  usernamePreviewLabel: {
+    fontSize: 11,
+    color: colors.onSurfaceTertiary,
+  },
+  usernamePreviewValue: {
+    fontSize: 13,
+    fontWeight: "700",
+    color: colors.brandPrimary,
+    marginTop: 2,
   },
   teacherModalHeader: {
     flexDirection: "row",

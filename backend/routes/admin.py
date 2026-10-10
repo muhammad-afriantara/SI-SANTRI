@@ -1,6 +1,7 @@
 import csv
 from datetime import timedelta
 import io
+import re
 import uuid
 from typing import List, Optional
 
@@ -174,6 +175,30 @@ async def get_student_detail(student_id: str, user: dict = Depends(require_role(
 async def add_student(body: AddStudentRequest, user: dict = Depends(require_role("admin"))):
     clean_nipd = body.nipd.strip()
     clean_name = body.name.strip()
+
+    # Validasi format NIPD (4-10 digit angka)
+    if not re.match(r"^\d{4,10}$", clean_nipd):
+        raise HTTPException(
+            status_code=400,
+            detail="Format NIPD tidak valid. NIPD harus berupa 4 sampai 10 digit angka tanpa huruf atau spasi (contoh: 8308)."
+        )
+
+    # Validasi format Nama Siswa (Title Case, minimal 3 karakter, tanpa angka)
+    if len(clean_name) < 3 or len(clean_name) > 60:
+        raise HTTPException(status_code=400, detail="Nama siswa harus terdiri dari 3 sampai 60 karakter.")
+    if any(char.isdigit() for char in clean_name):
+        raise HTTPException(status_code=400, detail="Nama siswa tidak boleh mengandung angka.")
+    if not re.match(r"^[A-Za-z\s'\.\-]+$", clean_name):
+        raise HTTPException(
+            status_code=400,
+            detail="Nama siswa hanya boleh memuat huruf, spasi, tanda petik ('), dan tanda hubung (-)."
+        )
+    words = [w for w in clean_name.split() if w]
+    if any(w[0].islower() for w in words):
+        raise HTTPException(
+            status_code=400,
+            detail="Format nama siswa harus diawali huruf kapital pada tiap kata (Title Case), contoh: Ahmad Adila Riskiyansyah."
+        )
 
     existing_nipd = await db.students.find_one({"nipd": clean_nipd})
     if existing_nipd:
@@ -440,11 +465,33 @@ async def list_teachers(user: dict = Depends(require_role("admin"))):
 @router.post("/teachers")
 async def add_teacher(body: AdminAddTeacherRequest, user: dict = Depends(require_role("admin"))):
     clean_name = body.name.strip()
-    username = normalize_identifier(body.username or clean_name)
 
-    existing = await db.users.find_one({"role": "guru", "username": username})
-    if existing:
-        raise HTTPException(status_code=400, detail="Username guru sudah digunakan")
+    # Validasi format Nama Guru (Title Case, 3-60 karakter, tanpa angka)
+    if len(clean_name) < 3 or len(clean_name) > 60:
+        raise HTTPException(status_code=400, detail="Nama guru harus terdiri dari 3 sampai 60 karakter.")
+    if any(char.isdigit() for char in clean_name):
+        raise HTTPException(status_code=400, detail="Nama guru tidak boleh mengandung angka.")
+    if not re.match(r"^[A-Za-z\s',\.\-]+$", clean_name):
+        raise HTTPException(
+            status_code=400,
+            detail="Nama guru hanya boleh memuat huruf, spasi, titik, koma gelar, dan tanda hubung.",
+        )
+    words = [w for w in clean_name.replace(",", " ").split() if w]
+    if any(w[0].islower() for w in words):
+        raise HTTPException(
+            status_code=400,
+            detail="Format nama guru harus diawali huruf kapital pada tiap kata (Title Case), contoh: Sintia Widiyawati atau Siti Aminah, S.Pd.",
+        )
+
+    # Otomatis buat username unik dari nama guru (tidak perlu input manual)
+    base_username = normalize_identifier(clean_name)
+    if not base_username:
+        base_username = "guru"
+    username = base_username
+    counter = 2
+    while await db.users.find_one({"role": "guru", "username": username}):
+        username = f"{base_username}_{counter}"
+        counter += 1
 
     teacher_id = f"T{uuid.uuid4().hex[:6].upper()}"
     password_hash = hash_password(DEFAULT_PASSWORD)
