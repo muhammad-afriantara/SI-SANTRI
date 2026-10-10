@@ -183,15 +183,20 @@ async def add_student(body: AddStudentRequest, user: dict = Depends(require_role
             detail="Format NIPD tidak valid. NIPD harus berupa 4 sampai 10 digit angka tanpa huruf atau spasi (contoh: 8308)."
         )
 
-    # Validasi format Nama Siswa (Title Case, minimal 3 karakter, tanpa angka)
+    # Validasi format Nama Siswa (Title Case, minimal 3 karakter, tanpa angka, tanpa gelar/titik/koma)
     if len(clean_name) < 3 or len(clean_name) > 60:
         raise HTTPException(status_code=400, detail="Nama siswa harus terdiri dari 3 sampai 60 karakter.")
     if any(char.isdigit() for char in clean_name):
         raise HTTPException(status_code=400, detail="Nama siswa tidak boleh mengandung angka.")
-    if not re.match(r"^[A-Za-z\s'\.\-]+$", clean_name):
+    if "," in clean_name or "." in clean_name:
         raise HTTPException(
             status_code=400,
-            detail="Nama siswa hanya boleh memuat huruf, spasi, tanda petik ('), dan tanda hubung (-)."
+            detail="Nama siswa tidak boleh memuat tanda koma atau titik gelar (contoh: Ahmad Adila Riskiyansyah).",
+        )
+    if not re.match(r"^[A-Za-z\s'\-]+$", clean_name):
+        raise HTTPException(
+            status_code=400,
+            detail="Nama siswa hanya boleh memuat huruf alfabet, spasi, tanda petik ('), dan tanda hubung (-).",
         )
     words = [w for w in clean_name.split() if w]
     if any(w[0].islower() for w in words):

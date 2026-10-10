@@ -124,9 +124,11 @@ export default function AdminDashboard() {
     if (!trimmedName) return "Nama lengkap siswa wajib diisi.";
     if (trimmedName.length < 3) return "Nama siswa minimal 3 karakter.";
     if (trimmedName.length > 60) return "Nama siswa maksimal 60 karakter.";
-    if (/\d/.test(trimmedName)) return "Nama siswa tidak boleh mengandung angka.";
-    if (!/^[a-zA-Z\s'\.\-]+$/.test(trimmedName)) {
-      return "Nama siswa hanya boleh memuat huruf, spasi, tanda petik ('), dan tanda hubung (-).";
+    if (trimmedName.includes(",") || trimmedName.includes(".")) {
+      return "Nama siswa tidak boleh memuat tanda koma atau titik gelar (contoh: Ahmad Adila Riskiyansyah).";
+    }
+    if (!/^[a-zA-Z\s'\-]+$/.test(trimmedName)) {
+      return "Nama siswa hanya boleh memuat huruf alfabet, spasi, tanda petik ('), dan tanda hubung (-).";
     }
     const words = trimmedName.split(/\s+/).filter(Boolean);
     if (words.some((w) => w[0] === w[0].toLowerCase())) {
@@ -516,7 +518,7 @@ export default function AdminDashboard() {
                 placeholder="Contoh: Ahmad Adila Riskiyansyah"
               />
               <Text style={styles.fieldFormatGuide}>
-                💡 Format: Awali huruf kapital pada tiap kata (Title Case) tanpa angka atau simbol aneh. Contoh: Ahmad Adila Riskiyansyah.
+                💡 Format: Nama lengkap siswa TANPA GELAR menggunakan huruf kapital pada tiap kata (Title Case), tanpa angka atau simbol aneh. Contoh: Ahmad Adila Riskiyansyah.
               </Text>
 
               {/* Input NIPD */}
