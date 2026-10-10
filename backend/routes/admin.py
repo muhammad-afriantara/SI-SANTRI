@@ -466,21 +466,26 @@ async def list_teachers(user: dict = Depends(require_role("admin"))):
 async def add_teacher(body: AdminAddTeacherRequest, user: dict = Depends(require_role("admin"))):
     clean_name = body.name.strip()
 
-    # Validasi format Nama Guru (Title Case, 3-60 karakter, tanpa angka)
+    # Validasi format Nama Guru (Title Case, 3-60 karakter, tanpa angka, TANPA GELAR)
     if len(clean_name) < 3 or len(clean_name) > 60:
         raise HTTPException(status_code=400, detail="Nama guru harus terdiri dari 3 sampai 60 karakter.")
     if any(char.isdigit() for char in clean_name):
         raise HTTPException(status_code=400, detail="Nama guru tidak boleh mengandung angka.")
-    if not re.match(r"^[A-Za-z\s',\.\-]+$", clean_name):
+    if "," in clean_name or "." in clean_name:
         raise HTTPException(
             status_code=400,
-            detail="Nama guru hanya boleh memuat huruf, spasi, titik, koma gelar, dan tanda hubung.",
+            detail="Format nama guru harus TANPA GELAR akademik agar seragam dengan 19 guru lainnya (contoh: Sintia Widiyawati, bukan Sintia Widiyawati, S.Pd.).",
         )
-    words = [w for w in clean_name.replace(",", " ").split() if w]
+    if not re.match(r"^[A-Za-z\s'\-]+$", clean_name):
+        raise HTTPException(
+            status_code=400,
+            detail="Nama guru hanya boleh memuat huruf, spasi, tanda petik ('), dan tanda hubung (-).",
+        )
+    words = [w for w in clean_name.split() if w]
     if any(w[0].islower() for w in words):
         raise HTTPException(
             status_code=400,
-            detail="Format nama guru harus diawali huruf kapital pada tiap kata (Title Case), contoh: Sintia Widiyawati atau Siti Aminah, S.Pd.",
+            detail="Format nama guru harus diawali huruf kapital pada tiap kata (Title Case), contoh: Sintia Widiyawati.",
         )
 
     # Otomatis buat username unik dari nama guru (tidak perlu input manual)

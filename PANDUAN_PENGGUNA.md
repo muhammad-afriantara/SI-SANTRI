@@ -236,7 +236,7 @@ Panel Admin adalah pusat kendali master data seluruh sekolah:
   6. Ketuk **Simpan Siswa**. Sistem otomatis membuatkan akun Siswa (login NIPD) dan akun Wali Murid sekaligus dengan password default (`password123`).
 * **Menambah Guru Baru (`+ Guru`)**:
   1. Ketuk tombol **"+ Guru"** di header atas.
-  2. Masukkan Nama Lengkap Guru (Title Case, contoh: *Sintia Widiyawati* atau *Dra. Hj. Siti Aminah, M.Pd*). Tersedia tombol **"✨ Rapikan Format"**.
+  2. Masukkan Nama Lengkap Guru TANPA GELAR (Title Case, contoh: *Sintia Widiyawati* agar seragam dengan 19 guru resmi lainnya). Tersedia tombol **"✨ Rapikan Format"**.
   3. **Username Otomatis**: Admin tidak perlu mengetik username manual. Sistem langsung membuatkan username unik resmi (misal: `@siti_aminah`) dengan preview langsung di layar.
   4. Ketuk **Simpan Guru**. Akun guru langsung aktif dan siap digunakan (password default: `password123`).
 * **Melihat Daftar Guru & Reset Kata Sandi Guru**:

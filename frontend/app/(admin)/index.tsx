@@ -101,15 +101,18 @@ export default function AdminDashboard() {
     if (trimmed.length < 3) return "Nama guru minimal 3 karakter.";
     if (trimmed.length > 60) return "Nama guru maksimal 60 karakter.";
     if (/\d/.test(trimmed)) return "Nama guru tidak boleh mengandung angka.";
-    if (!/^[a-zA-Z\s',.\-]+$/.test(trimmed)) {
-      return "Nama guru hanya boleh memuat huruf, spasi, titik, koma gelar, dan tanda hubung.";
+    if (trimmed.includes(",") || trimmed.includes(".")) {
+      return "Format nama guru harus TANPA GELAR akademik agar seragam dengan 19 guru lainnya (contoh: Sintia Widiyawati, bukan Sintia Widiyawati, S.Pd.).";
     }
-    const words = trimmed.replace(/[,.]/g, " ").split(/\s+/).filter(Boolean);
+    if (!/^[a-zA-Z\s'\-]+$/.test(trimmed)) {
+      return "Nama guru hanya boleh memuat huruf alfabet, spasi, tanda petik ('), dan tanda hubung (-).";
+    }
+    const words = trimmed.split(/\s+/).filter(Boolean);
     const hasLower = words.some(
       (w) => w[0] === w[0].toLowerCase() && !["dan", "bin", "binti"].includes(w.toLowerCase())
     );
     if (hasLower) {
-      return "Format tidak sesuai: Awali setiap kata dengan huruf kapital (Title Case), contoh: Sintia Widiyawati atau Siti Aminah, S.Pd.";
+      return "Format tidak sesuai: Awali setiap kata dengan huruf kapital (Title Case), contoh: Sintia Widiyawati.";
     }
     return null;
   };
@@ -709,10 +712,10 @@ export default function AdminDashboard() {
               style={styles.input}
               value={newTeacherName}
               onChangeText={setNewTeacherName}
-              placeholder="Contoh: Sintia Widiyawati, S.Pd"
+              placeholder="Contoh: Sintia Widiyawati"
             />
             <Text style={styles.fieldFormatGuide}>
-              💡 Format: Awali huruf kapital pada tiap kata (Title Case). Boleh menyertakan gelar resmi. Contoh: Sintia Widiyawati atau Dra. Hj. Siti Aminah, M.Pd.
+              💡 Format: Nama lengkap guru TANPA GELAR menggunakan huruf kapital di awal tiap kata (Title Case). Contoh: Sintia Widiyawati (agar seragam dengan 19 guru resmi lainnya).
             </Text>
 
             {/* Kotak Otomatis Username */}
