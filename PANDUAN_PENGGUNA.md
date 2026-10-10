@@ -227,20 +227,24 @@ Panel Admin adalah pusat kendali master data seluruh sekolah:
 * **Menambah Santri Baru (Bebas Typo Guru Wali)**:
   1. Di dashboard Admin [index.tsx](file:///d:/SI-SANTRI/frontend/app/(admin)/index.tsx), ketuk **"+ Siswa"**.
   2. Masukkan Nama Lengkap dan NIPD unik.
-  3. Pilih Rombel/Kelas (dikelompokkan rapi per jenjang: Kelas 7, 8, atau 9).
-  4. **Pilih Guru Wali**: Pilih guru pembina langsung dari daftar guru resmi sekolah (cukup klik nama guru, tanpa mengetik manual sehingga 100% bebas salah ketik/typo).
-  5. Ketuk **Simpan Siswa**. Sistem otomatis membuatkan akun Siswa (login NIPD) dan akun Wali Murid sekaligus dengan password default (`password123`).
+* **Menambah Siswa Baru (`+ Siswa`)**:
+  1. Ketuk tombol **"+ Siswa"** di header atas.
+  2. Masukkan Nama Lengkap Siswa sesuai aturan format resmi (Title Case, contoh: *Ahmad Adila Riskiyansyah*). Tersedia tombol cepat **"✨ Rapikan Format"** untuk merapikan kapitalisasi secara otomatis.
+  3. Masukkan NIPD (4 s/d 10 digit angka resmi buku induk, otomatis memfilter karakter non-angka).
+  4. Pilih Rombel/Kelas (dikelompokkan rapi per jenjang: Kelas 7, 8, atau 9).
+  5. **Pilih Guru Wali**: Ketuk pemilih guru wali untuk membuka daftar guru resmi (dilengkapi kolom pencarian nama/username, bebas typo dan tidak bertumpuk).
+  6. Ketuk **Simpan Siswa**. Sistem otomatis membuatkan akun Siswa (login NIPD) dan akun Wali Murid sekaligus dengan password default (`password123`).
 * **Menambah Guru Baru (`+ Guru`)**:
   1. Ketuk tombol **"+ Guru"** di header atas.
-  2. Masukkan Nama Lengkap Guru (misal: *Dra. Hj. Siti Aminah, M.Pd*).
-  3. Username otomatis dibuat dari nama (atau dapat disesuaikan manual).
+  2. Masukkan Nama Lengkap Guru (Title Case, contoh: *Sintia Widiyawati* atau *Dra. Hj. Siti Aminah, M.Pd*). Tersedia tombol **"✨ Rapikan Format"**.
+  3. **Username Otomatis**: Admin tidak perlu mengetik username manual. Sistem langsung membuatkan username unik resmi (misal: `@siti_aminah`) dengan preview langsung di layar.
   4. Ketuk **Simpan Guru**. Akun guru langsung aktif dan siap digunakan (password default: `password123`).
 * **Melihat Daftar Guru & Reset Kata Sandi Guru**:
   * Ketuk kartu KPI **"Total Guru 👁️"** di beranda admin untuk membuka daftar seluruh guru terdaftar, jumlah santri yang dibina, serta tombol cepat **"🔑 Reset"** kata sandi guru jika guru lupa password.
 * **Mereset Kata Sandi Siswa / Wali**:
   * Cari nama santri pada daftar ➡️ ketuk tombol **"🔑 Reset"** ➡️ kata sandi dapat dikembalikan ke `password123`.
-* **Mengunduh Rekap Seluruh Sekolah**:
-  * Ketuk tombol **"📥 Ekspor"** di header atas untuk mengunduh rekapitulasi nilai karakter seluruh santri di sekolah dalam format Excel/CSV (dapat difilter per kelas atau semua kelas).
+* **Mengunduh Rekap Seluruh Sekolah (Ekspor CSV)**:
+  * Tombol **"Ekspor Rekap Karakter Santri (CSV)"** ditempatkan rapi di bawah kartu statistik KPI (sehingga header admin tetap luas dan nyaman). File rekapitulasi nilai 15 rombel langsung tersimpan ke folder **Unduhan / Downloads** di memori HP.
 
 ---
 
